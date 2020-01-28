@@ -35,3 +35,11 @@ Every folder named `v[number]` has these files:
 - `script.js`: this is where your JavaScript lives
 
 `script.js` and `index.html` are connected by a `<script>`-tag in `index.html`. Some basic styling is in the `head` of `index.html`, to keep the complexity of the file structure low (less files, less complexity)
+
+---
+
+## General Information
+
+### What is D3?
+
+`D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life. For example, you can use D3 to generate an HTML table from an array of numbers. Or, use the same data to create an interactive SVG bar chart with smooth transitions and interaction.`
