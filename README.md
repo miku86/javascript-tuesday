@@ -43,3 +43,40 @@ Every folder named `v[number]` has these files:
 ### What is D3?
 
 `D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life. For example, you can use D3 to generate an HTML table from an array of numbers. Or, use the same data to create an interactive SVG bar chart with smooth transitions and interaction.`
+
+---
+
+## V1:
+
+What:
+
+- find out how to add D3 / an external JavaScript package/library
+- selecting elements
+- using data
+
+Why:
+
+- to actually use D3
+- to get a basic understanding what D3 can do
+- to learn some basics tools: selecting and manipulating elements
+
+Steps:
+
+- read documentation to add D3
+- add D3
+- `index.html`: heading with text `D3 for Beginners`
+- `script.js`: select, transition, style (docs!)
+- `script.js`: add some random data (array)
+- `index.html`: container for chart, add border
+- `script.js`: select, selectAll, data, enter, append, text, style
+
+What we've learned:
+
+- `select()`
+- `selectAll()`
+- `style()`
+- `data()`
+- `enter()`
+- `append()`
+- `text()`
+- => general workflow
