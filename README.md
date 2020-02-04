@@ -80,3 +80,39 @@ What we've learned:
 - `append()`
 - `text()`
 - => general workflow
+
+---
+
+## V2:
+
+What:
+
+- get some more practice in selecting and manipulating elements
+
+Why:
+
+- to get comfortable understanding the mental models
+
+Steps:
+
+- create empty HTML page
+- add HTML5 skeleton with connection to js file
+- `index.html`: create an empty div
+- `script.js`: find out if files are connected
+- `script.js`: add a svg element with a width and height of 200px into the div
+- `script.js`: add a border to the svg
+- `script.js`: add a new rectangle into the svg with a width and height of 50px
+- `script.js`: fill the rectangle with blue color
+- `script.js`: add a new circle into the svg with a radius of 50px
+- `script.js`: the circle should start at 50/50
+- `script.js`: fill the circle with yellow color
+- `script.js`: add a new line into the svg that goes from 0/0 to 50/100
+- `script.js`: make the line purple
+
+What we've learned:
+
+- `select()`
+- `append()`
+- `attr()`
+- `style()`
+- => general workflow
