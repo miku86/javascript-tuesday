@@ -63,7 +63,7 @@ Why:
 Steps:
 
 - read documentation to add D3
-- add D3
+- add D3 from internet
 - `index.html`: heading with text `D3 for Beginners`
 - `script.js`: select, transition, style (docs!)
 - `script.js`: add some random data (array)
