@@ -133,14 +133,17 @@ Why:
 
 Steps:
 
-- create empty HTML page
+- create an empty HTML page
 - add HTML5 skeleton with connection to js file
 - `index.html`: create an empty div for clock
 - `index.html`: create an empty div for clock face
-- `index.html`: create an empty div for minutes hand
 - `index.html`: create an empty div for seconds hand
+- `index.html`: create an empty div for minutes hand
 - `index.html`: create an empty div for hours hand
-- `index.html`: add styling from template
+
+--------------BIS HIER------------------------------
+
+- `index.html`: add styling from template//
 - `script.js`: add function to set the clock time
 - `script.js`: run this function in intervals
 - `script.js`: get seconds
