@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>D3 for Beginners - Clock</title>
+
+    <style>
+      .clock {
+        width: 300px;
+        height: 300px;
+        border: 20px solid grey;
+        border-radius: 50%;
+        padding: 10px;
+      }
+
+      .clock-face {
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px);
+      }
+
+      .hand {
+        width: 50%;
+        height: 6px;
+        background: black;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hours-hand"></div>
+        <div class="hand mins-hand"></div>
+        <div class="hand seconds-hand"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
