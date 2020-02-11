@@ -143,7 +143,8 @@ Steps:
 
 --------------BIS HIER------------------------------
 
-- `index.html`: add styling from template//
+- `index.html`: add styling from template
+- `index.html`: add D3
 - `script.js`: add function to set the clock time
 - `script.js`: run this function in intervals
 - `script.js`: get seconds
