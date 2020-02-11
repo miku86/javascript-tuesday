@@ -118,3 +118,45 @@ What we've learned:
 - `attr()`
 - `style()`
 - => general workflow
+
+---
+
+## V3:
+
+What:
+
+- build a analog clock with D3 and JavaScript
+
+Why:
+
+- to get some practice
+
+Steps:
+
+- create empty HTML page
+- add HTML5 skeleton with connection to js file
+- `index.html`: create an empty div for clock
+- `index.html`: create an empty div for clock face
+- `index.html`: create an empty div for minutes hand
+- `index.html`: create an empty div for seconds hand
+- `index.html`: create an empty div for hours hand
+- `index.html`: add styling from template
+- `script.js`: add function to set the clock time
+- `script.js`: run this function in intervals
+- `script.js`: get seconds
+- `script.js`: calculate hand degrees
+- `script.js`: set the seconds hand
+- `script.js`: get minutes
+- `script.js`: calculate hand degrees
+- `script.js`: set the minutes hand
+- `script.js`: get hours
+- `script.js`: calculate hand degrees
+- `script.js`: set the hours hand
+
+What we've learned:
+
+- `select()`
+- `style()`
+- `setInterval()`
+
+- => general workflow
