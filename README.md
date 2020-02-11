@@ -97,6 +97,7 @@ Steps:
 
 - create empty HTML page
 - add HTML5 skeleton with connection to js file
+- add D3 from internet
 - `index.html`: create an empty div
 - `script.js`: find out if files are connected
 - `script.js`: add a svg element with a width and height of 200px into the div
