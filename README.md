@@ -140,12 +140,10 @@ Steps:
 - `index.html`: create an empty div for seconds hand
 - `index.html`: create an empty div for minutes hand
 - `index.html`: create an empty div for hours hand
-
---------------BIS HIER------------------------------
-
 - `index.html`: add styling from template
 - `index.html`: add D3
 - `script.js`: add function to set the clock time
+- `script.js`: check if function runs
 - `script.js`: run this function in intervals
 - `script.js`: get seconds
 - `script.js`: calculate hand degrees
