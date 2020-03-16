@@ -18,3 +18,7 @@ function createInputField() {
 
 createInputField()
 createButton("Add Player", "add-player")
+
+const playersDiv = document.createElement("div")
+playersDiv.className = "players"
+app.appendChild(playersDiv)
