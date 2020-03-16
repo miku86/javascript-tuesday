@@ -2,28 +2,27 @@
 
 ### As a User, I can add a new player
 
-- [C] As a User, I can see the button "New player"
-- [C] As a User, I can click the button "New Player"
-- [C] As a User, I can see an input "New Player Name"
-- [C] As a User, I can input a player name
-- [C] As a User, I can see the button "Save player"
-- [C] As a User, I can click the button "Save Player"
-- [C] As a User, I can see the result of adding a new player
+- [x] As a User, I can see the button "New player"
+- [x] As a User, I can click the button "New Player"
+- [x] As a User, I can see an input "New Player Name"
+- [x] As a User, I can input a player name
+- [x] As a User, I can see the button "Save player"
+- [x] As a User, I can click the button "Save Player"
+- [ ] As a User, I can see the result of adding a new player
 
 ### As a User, I can start a game
 
-- [C] As a User, I can see the button "Start Game"
-- [C] As a User, I can click the button "Start Game"
-- [C] As a User, I can't see the button "Start Game"
+- [x] As a User, I can see the button "Start Game"
+- [x] As a User, I can't see the button "Start Game"
 
 ### As a User, I can add a new round
 
-- [C] As a User, I can see the button "New Round"
-- [C] As a User, I can click the button "New Round"
-- [C] As a User, I can see an empty row for this round to input the "Reiz"-Number
-- [C] As a User, I can input a "Reiz"-Number
-- [C] As a User, I can input a "Melden"-Number
-- [C] As a User, I can input a "Erzielte Punkte"-Number
+- [x] As a User, I can see the button "New Round"
+- [x] As a User, I can click the button "New Round"
+- [ ] As a User, I can see an empty row for this round to input the "Reiz"-Number
+- [ ] As a User, I can input a "Reiz"-Number
+- [ ] As a User, I can input a "Melden"-Number
+- [ ] As a User, I can input a "Erzielte Punkte"-Number
 
 ## NICE TO HAVE
 
