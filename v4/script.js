@@ -22,3 +22,14 @@ createButton("Add Player", "add-player")
 const playersDiv = document.createElement("div")
 playersDiv.className = "players"
 app.appendChild(playersDiv)
+
+const playerInputField = document.querySelector(".input-player-name")
+const userButton = document.querySelector("#add-player")
+const playersContainer = document.querySelector(".players")
+
+userButton.addEventListener("click", () => {
+  const player = document.createElement("p")
+  player.textContent = playerInputField.value
+  playersContainer.appendChild(player)
+  playerInputField.value = ""
+})
