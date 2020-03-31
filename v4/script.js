@@ -1,5 +1,6 @@
 const app = document.querySelector(".app")
 
+// function to create single button
 function createButton(buttonText, buttonId) {
   const customButton = document.createElement("button")
   customButton.textContent = buttonText
@@ -7,6 +8,7 @@ function createButton(buttonText, buttonId) {
   app.appendChild(customButton)
 }
 
+// function to create single input field
 function createInputField() {
   const playerInput = document.createElement("input")
   playerInput.type = "text"
@@ -16,19 +18,28 @@ function createInputField() {
   app.appendChild(playerInput)
 }
 
+function createPlayersDiv() {
+  const playersDiv = document.createElement("div")
+  playersDiv.className = "players"
+  app.appendChild(playersDiv)
+}
+
+// run function
 createInputField()
+
+// run function
 createButton("Add Player", "add-player")
 
-const playersDiv = document.createElement("div")
-playersDiv.className = "players"
-app.appendChild(playersDiv)
+// run function
+createPlayersDiv()
 
 const playerInputField = document.querySelector(".input-player-name")
-const userButton = document.querySelector("#add-player")
+const addUserButton = document.querySelector("#add-player")
 const playersContainer = document.querySelector(".players")
 
-userButton.addEventListener("click", () => {
+addUserButton.addEventListener("click", () => {
   const player = document.createElement("p")
+  console.log(player)
   player.textContent = playerInputField.value
   playersContainer.appendChild(player)
   playerInputField.value = ""
