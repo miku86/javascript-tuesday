@@ -40,6 +40,11 @@ const playersContainer = document.querySelector(".players")
 addUserButton.addEventListener("click", () => {
   const player = document.createElement("p")
   player.textContent = playerInputField.value
-  playersContainer.appendChild(player)
-  playerInputField.value = ""
+
+  if(playerInputField.value.length > 2){
+    playersContainer.appendChild(player)
+    playerInputField.value = ""
+  } else {
+    alert("Bitte längeren Name eingeben")
+  }
 })
