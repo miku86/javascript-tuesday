@@ -3,24 +3,30 @@ const app = document.querySelector(".app")
 // function to create single button
 function createButton(buttonText, buttonId) {
   const customButton = document.createElement("button")
+
   customButton.textContent = buttonText
   customButton.id = buttonId
+
   app.appendChild(customButton)
 }
 
 // function to create single input field
 function createInputField() {
   const playerInput = document.createElement("input")
+
   playerInput.type = "text"
   playerInput.className = "input-player-name"
   playerInput.placeholder = "New Player Name"
   playerInput.autofocus = true
+
   app.appendChild(playerInput)
 }
 
 function createPlayersDiv() {
   const playersDiv = document.createElement("div")
+
   playersDiv.className = "players"
+
   app.appendChild(playersDiv)
 }
 
@@ -29,6 +35,9 @@ createInputField()
 
 // run function
 createButton("Add Player", "add-player")
+
+// run function
+createButton("Start Game", "start-game")
 
 // run function
 createPlayersDiv()
