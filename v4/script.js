@@ -39,7 +39,6 @@ const playersContainer = document.querySelector(".players")
 
 addUserButton.addEventListener("click", () => {
   const player = document.createElement("p")
-  console.log(player)
   player.textContent = playerInputField.value
   playersContainer.appendChild(player)
   playerInputField.value = ""
