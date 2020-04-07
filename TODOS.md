@@ -13,8 +13,8 @@
 ### As a User, I can start a game
 
 - [x] As a User, I can see the button "Start Game"
-- [ ] As a User, I can see the button "Start Game" only if there are at least 3 players
-- [ ] As a User, I can't see the button "Start Game"
+- [x] As a User, I can see the button "Start Game" only if there are at least 3 players
+- [x] As a User, I can't see the button "Start Game"
 
 // Karten werden ausgeteilt
 
@@ -54,14 +54,16 @@
 
 ## NICE TO HAVE
 
-- [N] As a User, I can see a status message (success/error)
-- [N] As a User, I can see a status message (success/error)
-- [N] As a User, I can see a message to start "Reizen"
-- [N] As a User, I can't see a message to start "Reizen"
-- [N] As a User, I can see a message to start "Zeigen + Ablegen"
-- [N] As a User, I can't see a message to start "Zeigen + Ablegen"
-- [N] As a User, I can see a message to start "Melden + Ansagen"
-- [N] As a User, I can't see a message to start "Melden"
-- [N] As a User, I can see which user did (not) achieved its goal
-- [N] As a User, I can see a row for the "Total"-Numbers
-- [N] As a User, I can see a graph for the "Total"-Numbers
+- [ ] As a User, I can see a status message (success/error)
+- [ ] As a User, I can see a status message (success/error)
+- [ ] As a User, I can see a message to start "Reizen"
+- [ ] As a User, I can't see a message to start "Reizen"
+- [ ] As a User, I can see a message to start "Zeigen + Ablegen"
+- [ ] As a User, I can't see a message to start "Zeigen + Ablegen"
+- [ ] As a User, I can see a message to start "Melden + Ansagen"
+- [ ] As a User, I can't see a message to start "Melden"
+- [ ] As a User, I can see which user did (not) achieved its goal
+- [ ] As a User, I can see a row for the "Total"-Numbers
+- [ ] As a User, I can see a graph for the "Total"-Numbers
+- [ ] As a User, I can edit a player name
+- [ ] As a User, I can delete a player
