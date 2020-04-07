@@ -49,12 +49,16 @@ addUserButton.addEventListener("click", () => {
   player.textContent = playerInputField.value
 
   if(playerInputField.value.length > 2){
-    playersContainer.appendChild(player)
-    playerInputField.value = ""
-    amountOfPlayers = amountOfPlayers + 1;
+    if(amountOfPlayers < 4){
+      playersContainer.appendChild(player)
+      playerInputField.value = ""
+      amountOfPlayers = amountOfPlayers + 1;
 
-    if(amountOfPlayers === 3){
-      createButton("Start Game", "start-game")
+      if(amountOfPlayers === 3){
+        createButton("Start Game", "start-game")
+      }
+    } else {
+      alert("Maximal 4 Spieler erlaubt!")
     }
   } else {
     alert("Bitte längeren Name eingeben")
