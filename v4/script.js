@@ -42,6 +42,7 @@ createButton("Start Game", "start-game")
 // run function
 createPlayersDiv()
 
+let amountOfPlayers = 0;
 const playerInputField = document.querySelector(".input-player-name")
 const addUserButton = document.querySelector("#add-player")
 const playersContainer = document.querySelector(".players")
@@ -53,6 +54,7 @@ addUserButton.addEventListener("click", () => {
   if(playerInputField.value.length > 2){
     playersContainer.appendChild(player)
     playerInputField.value = ""
+    amountOfPlayers = amountOfPlayers + 1;
   } else {
     alert("Bitte längeren Name eingeben")
   }
