@@ -11,12 +11,12 @@ function createButton(buttonText, buttonId) {
 }
 
 // function to create single input field
-function createInputField() {
+function createInputField(inputPlaceholder, inputClassname) {
   const playerInput = document.createElement("input")
 
   playerInput.type = "text"
-  playerInput.className = "input-player-name"
-  playerInput.placeholder = "New Player Name"
+  playerInput.className = inputClassname
+  playerInput.placeholder = inputPlaceholder
   playerInput.autofocus = true
 
   app.appendChild(playerInput)
@@ -31,7 +31,7 @@ function createPlayersDiv() {
 }
 
 // run function
-createInputField()
+createInputField("New Player Name", "input-player-name")
 
 // run function
 createButton("Add Player", "add-player")
