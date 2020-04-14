@@ -44,9 +44,16 @@ const playerInputField = document.querySelector(".input-player-name")
 const addUserButton = document.querySelector("#add-player")
 const playersContainer = document.querySelector(".players")
 
+let playerNames = []
+
 addUserButton.addEventListener("click", () => {
   const player = document.createElement("p")
   player.textContent = playerInputField.value
+  const newPlayer = {
+    id: amountOfPlayers + 1 ,
+    name: playerInputField.value,
+  }
+  playerNames.push(newPlayer)
 
   if(playerInputField.value.length > 2){
     if(amountOfPlayers < 4){
