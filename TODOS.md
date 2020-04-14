@@ -67,3 +67,4 @@
 - [ ] As a User, I can see a graph for the "Total"-Numbers
 - [ ] As a User, I can edit a player name
 - [ ] As a User, I can delete a player
+- [ ] As a User, I can see who's the dealer
