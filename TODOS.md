@@ -20,7 +20,7 @@
 
 ### As a User, I can Reizen
 
-- [ ] As a User, I can see the input "Reiz"-Nummer
+- [x] As a User, I can see the input "Reiz"-Nummer
 - [ ] As a User, I can see the button "Reiz-Nummer" bestätigen
 - [ ] As a User, I can see the submitted input of "Reiz"-Nummer
 - [ ] As a User, I can see the button "Passen"
@@ -34,7 +34,8 @@
 - [ ] As a User, I can see the input "Melden"-Nummer
 - [ ] As a User, I can see the button "Melden-Nummer" bestätigen
 - [ ] As a User, I can see the submitted input of "Melden"-Nummer
-      // solange bis alle Player gemeldet haben
+
+// solange bis alle Player gemeldet haben
 
 // Spielrunde beginnt
 
@@ -68,3 +69,4 @@
 - [ ] As a User, I can edit a player name
 - [ ] As a User, I can delete a player
 - [ ] As a User, I can see who's the dealer
+- [ ] As a User, the input field to add a new player is autofocused

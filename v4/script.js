@@ -63,6 +63,13 @@ addUserButton.addEventListener("click", () => {
 
       if(amountOfPlayers === 3){
         createButton("Start Game", "start-game")
+        const startGameButton = document.querySelector("#start-game")
+
+        startGameButton.addEventListener("click", () => {
+          app.innerHTML = ""
+          // input für reiznummer erstellen
+          createInputField("Reizenzahl eingeben", "input-reizen")
+        })
       }
     } else {
       alert("Maximal 4 Spieler erlaubt!")
@@ -71,3 +78,7 @@ addUserButton.addEventListener("click", () => {
     alert("Bitte längeren Name eingeben")
   }
 })
+
+// button um reiznummer zu bestätigen sichtbar
+// buttonklick führt zu sichtbarer reiznummer
+// button um zu passen
