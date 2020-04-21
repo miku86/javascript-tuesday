@@ -21,8 +21,8 @@
 ### As a User, I can Reizen
 
 - [x] As a User, I can see the input "Reiz"-Nummer
-- [ ] As a User, I can see the button "Reiz-Nummer" bestätigen
-- [ ] As a User, I can see the submitted input of "Reiz"-Nummer
+- [x] As a User, I can see the button "Reiz-Nummer" bestätigen
+- [x] As a User, I can see the submitted input of "Reiz"-Nummer
 - [ ] As a User, I can see the button "Passen"
 - [ ] As a User, I can see the new "Reiz"-Runde, if there is at least 1 player left to Reiz against
 
