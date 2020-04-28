@@ -4,7 +4,7 @@ function createButton(buttonText, buttonId) {
   const customButton = document.createElement("button")
   customButton.textContent = buttonText
   customButton.id = buttonId
-  app.appendChild(customButton)
+  return customButton
 }
 
 function createInputField(inputPlaceholder, inputClassname) {
@@ -13,7 +13,7 @@ function createInputField(inputPlaceholder, inputClassname) {
   playerInput.className = inputClassname
   playerInput.placeholder = inputPlaceholder
   playerInput.autofocus = true
-  app.appendChild(playerInput)
+  return playerInput
 }
 
 function createDiv(newClass) {
@@ -49,19 +49,26 @@ addUserButton.addEventListener("click", () => {
       amountOfPlayers = amountOfPlayers + 1
 
       if (amountOfPlayers === 3) {
-        createButton("Start Game", "start-game")
-        const startGameButton = document.querySelector("#start-game")
+        const startGameButton = createButton("Start Game", "start-game")
+        app.appendChild(startGameButton)
 
-        startGameButton.addEventListener("click", () => {
+        const myStartGameButton = document.querySelector("#start-game")
+
+        myStartGameButton.addEventListener("click", () => {
           app.innerHTML = ""
-          createInputField("Reizenzahl eingeben", "input-reizen")
-          createButton("Bestätigen", "submit-reizzahl")
+
+          const myInput = createInputField("Reizenzahl eingeben", "input-reizen")
+          app.appendChild(myInput)
+
+          const addReiznummerButton = createButton("Bestätigen", "submit-reizzahl")
+          app.appendChild(addReiznummerButton)
           createDiv("reizzahl")
 
           const inputReizzahl = document.querySelector(".input-reizen")
           let currentHighestReizzahl = 0
 
           const submitReizzahl = document.querySelector("#submit-reizzahl")
+
           submitReizzahl.addEventListener("click", () => {
             const newReizzahl = inputReizzahl.value
 
