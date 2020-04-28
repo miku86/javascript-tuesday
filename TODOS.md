@@ -44,10 +44,10 @@
 - [ ] As a User, I can see the input "Erzielte Punkte"-Nummer
 - [ ] As a User, I can see the button "Erzielte Punkte" bestätigen
 - [ ] As a User, I can see the submitted input of "Erzielte Punkte"-Nummer
-      // solange bis alle Player gemeldet haben
+
+// solange bis alle Player gemeldet haben
 
 - [ ] Diverse Berechnungen der Punkte
-
 - [ ] As a User, I can see the button "New Round"
 - [ ] As a User, I can click the button "New Round"
 - [ ] As a User, I can see an empty row for this round to input the "Reiz"-Number
@@ -55,6 +55,7 @@
 
 ## NICE TO HAVE
 
+- [x] As a User, I can submit a new player by clicking Enter
 - [ ] As a User, I can see a status message (success/error)
 - [ ] As a User, I can see a status message (success/error)
 - [ ] As a User, I can see a message to start "Reizen"
