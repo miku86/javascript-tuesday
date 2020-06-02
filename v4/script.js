@@ -35,6 +35,19 @@ function createDiv(newClass) {
   app.appendChild(customDiv);
 }
 
+function createDropdown(players){
+  const playerNameDropdown = document.createElement("select");
+
+  players.forEach(player => {
+    const playerNameOption = document.createElement("option");
+    playerNameOption.textContent = player["name"];
+    playerNameOption.value = player["id"];
+    playerNameDropdown.appendChild(playerNameOption);
+  });
+
+  return playerNameDropdown;
+}
+
 createForm();
 
 createDiv("players");
@@ -76,9 +89,11 @@ addUserForm.addEventListener("submit", (event) => {
           const myInput = createInputField("Reizenzahl eingeben", "input-reizen");
           app.appendChild(myInput);
 
+          const playerNameDropdown = createDropdown(playerNames);
+          app.appendChild(playerNameDropdown);
+
           const addReiznummerButton = createButton("Bestätigen", "submit-reizzahl");
           app.appendChild(addReiznummerButton);
-          createDiv("reizzahl");
 
           const inputReizzahl = document.querySelector(".input-reizen");
           let currentHighestReizzahl = 0;
@@ -90,6 +105,7 @@ addUserForm.addEventListener("submit", (event) => {
 
             if (newReizzahl > currentHighestReizzahl) {
               currentHighestReizzahl = Number(newReizzahl);
+              createDiv("reizzahl");
               const reizzahlDiv = document.querySelector(".reizzahl");
               reizzahlDiv.textContent = newReizzahl;
             } else {
