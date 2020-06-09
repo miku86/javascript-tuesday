@@ -35,10 +35,11 @@ function createDiv(newClass) {
   app.appendChild(customDiv);
 }
 
-function createDropdown(players){
+function createDropdown(players) {
   const playerNameDropdown = document.createElement("select");
+  playerNameDropdown.className = "playerSelected";
 
-  players.forEach(player => {
+  players.forEach((player) => {
     const playerNameOption = document.createElement("option");
     playerNameOption.textContent = player["name"];
     playerNameOption.value = player["id"];
@@ -56,7 +57,7 @@ let amountOfPlayers = 0;
 const playerInputField = document.querySelector(".input-player-name");
 const playersContainer = document.querySelector(".players");
 
-let playerNames = [];
+let playersData = [];
 
 const addUserForm = document.querySelector(".form-add-player");
 
@@ -69,7 +70,7 @@ addUserForm.addEventListener("submit", (event) => {
     id: amountOfPlayers + 1,
     name: playerInputField.value,
   };
-  playerNames.push(newPlayer);
+  playersData.push(newPlayer);
 
   if (playerInputField.value.length > 2) {
     if (amountOfPlayers < 4) {
@@ -86,40 +87,48 @@ addUserForm.addEventListener("submit", (event) => {
         myStartGameButton.addEventListener("click", () => {
           app.innerHTML = "";
 
-          const myInput = createInputField("Reizenzahl eingeben", "input-reizen");
+          const myInput = createInputField(
+            "Reizenzahl eingeben",
+            "input-reizen"
+          );
           app.appendChild(myInput);
 
-          const playerNameDropdown = createDropdown(playerNames);
+          const playerNameDropdown = createDropdown(playersData);
           app.appendChild(playerNameDropdown);
 
-          const addReiznummerButton = createButton("Bestätigen", "submit-reizzahl");
+          const addReiznummerButton = createButton(
+            "Bestätigen",
+            "submit-reizzahl"
+          );
           app.appendChild(addReiznummerButton);
 
           const inputReizzahl = document.querySelector(".input-reizen");
-          let currentHighestReizzahl = 0;
 
-          const submitReizzahl = document.querySelector("#submit-reizzahl");
-
-          submitReizzahl.addEventListener("click", () => {
-            const newReizzahl = inputReizzahl.value;
-
-            if (newReizzahl > currentHighestReizzahl) {
-              currentHighestReizzahl = Number(newReizzahl);
-              createDiv("reizzahl");
-              const reizzahlDiv = document.querySelector(".reizzahl");
-              reizzahlDiv.textContent = newReizzahl;
-            } else {
-              alert(`Bitte mindestens ${currentHighestReizzahl + 10} eingeben!`);
-            }
-
-            inputReizzahl.value = "";
+          let selectedPlayerInDropdownId;
+          const dropdown = document.querySelector(".playerSelected");
+          dropdown.addEventListener("change", (event) => {
+            selectedPlayerInDropdownId = event.target.value;
           });
 
-          // passen button anzeigen
-          // wenn passen gedrückt wird, erhöhe passen-counter um 1
-          // wenn der passen-counter 1 kleiner ist als die anzahl der spieler,
-          // dann beende Reizen
+          const submitReizzahl = document.querySelector("#submit-reizzahl");
+          submitReizzahl.addEventListener("click", () => {
+            let selectedPlayerName;
 
+            for (i = 0; i < amountOfPlayers; i++) {
+              if (playersData[i]["id"] == selectedPlayerInDropdownId) {
+                selectedPlayerName =
+                  playersData[selectedPlayerInDropdownId - 1]["name"];
+              }
+            }
+
+            alert(
+              `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit PUNKTE? Punkte gewonnen`
+            );
+
+            // !!!bug: fehlerhafter spielername wird aufgenommen
+
+            // speichern, wer mit welcher zahl reizen gewonnen hat
+          });
         });
       }
     } else {
