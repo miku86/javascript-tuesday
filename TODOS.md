@@ -16,28 +16,18 @@
 - [x] As a User, I can see the button "Start Game" only if there are at least 3 players
 - [x] As a User, I can't see the button "Start Game"
 
-// Karten werden ausgeteilt
-
 ### As a User, I can Reizen
 
 - [x] As a User, I can see the input "Reiz"-Nummer
 - [x] As a User, I can see the button "Reiz-Nummer" bestätigen
 - [x] As a User, I can see the submitted input of "Reiz"-Nummer
-- [ ] As a User, I can see the button "Passen"
-- [ ] As a User, I can see the new "Reiz"-Runde, if there is at least 1 player left to Reiz against
-
-// Reiz-Gewinner nimmt Karten aus der Mitte auf
-// Reiz-Gewinner gibt Karten wieder ab
+- [x] As a User, my Reiz-Zahl gets saved round-based.
 
 ### As a User, I can Melden
 
 - [ ] As a User, I can see the input "Melden"-Nummer
 - [ ] As a User, I can see the button "Melden-Nummer" bestätigen
 - [ ] As a User, I can see the submitted input of "Melden"-Nummer
-
-// solange bis alle Player gemeldet haben
-
-// Spielrunde beginnt
 
 ### As a User, I can Save my points
 
