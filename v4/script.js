@@ -122,10 +122,8 @@ addUserForm.addEventListener("submit", (event) => {
             }
 
             alert(
-              `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit PUNKTE? Punkte gewonnen`
+              `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit ${inputReizzahl.value} Punkte gewonnen`
             );
-
-            // !!!bug: fehlerhafter spielername wird aufgenommen
 
             // speichern, wer mit welcher zahl reizen gewonnen hat
           });
