@@ -104,7 +104,8 @@ addUserForm.addEventListener("submit", (event) => {
 
           const inputReizzahl = document.querySelector(".input-reizen");
 
-          let selectedPlayerInDropdownId;
+          let selectedPlayerInDropdownId = playersData[0]["id"];
+
           const dropdown = document.querySelector(".playerSelected");
           dropdown.addEventListener("change", (event) => {
             selectedPlayerInDropdownId = event.target.value;
@@ -112,20 +113,23 @@ addUserForm.addEventListener("submit", (event) => {
 
           const submitReizzahl = document.querySelector("#submit-reizzahl");
           submitReizzahl.addEventListener("click", () => {
-            let selectedPlayerName;
+            if (!inputReizzahl.value || isNaN(inputReizzahl.value)) {
+              alert("Bitte korrekte Reizzahl eingeben");
+            } else {
+              let selectedPlayerName;
 
-            for (i = 0; i < amountOfPlayers; i++) {
-              if (playersData[i]["id"] == selectedPlayerInDropdownId) {
-                selectedPlayerName =
-                  playersData[selectedPlayerInDropdownId - 1]["name"];
+              for (i = 0; i < amountOfPlayers; i++) {
+                if (playersData[i]["id"] == selectedPlayerInDropdownId) {
+                  selectedPlayerName = playersData[i]["name"];
+                }
               }
+
+              alert(
+                `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit ${inputReizzahl.value} Punkte gewonnen`
+              );
+
+              // speichern, wer mit welcher zahl reizen gewonnen hat
             }
-
-            alert(
-              `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit ${inputReizzahl.value} Punkte gewonnen`
-            );
-
-            // speichern, wer mit welcher zahl reizen gewonnen hat
           });
         });
       }
