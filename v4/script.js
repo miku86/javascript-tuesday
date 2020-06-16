@@ -64,15 +64,15 @@ const addUserForm = document.querySelector(".form-add-player");
 addUserForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const player = document.createElement("p");
-  player.textContent = playerInputField.value;
-  const newPlayer = {
-    id: amountOfPlayers + 1,
-    name: playerInputField.value,
-  };
-  playersData.push(newPlayer);
-
   if (playerInputField.value.length > 2) {
+    const player = document.createElement("p");
+    player.textContent = playerInputField.value;
+    const newPlayer = {
+      id: amountOfPlayers + 1,
+      name: playerInputField.value,
+    };
+    playersData.push(newPlayer);
+
     if (amountOfPlayers < 4) {
       playersContainer.appendChild(player);
       playerInputField.value = "";
