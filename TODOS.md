@@ -1,5 +1,6 @@
 ## CORE
 
+
 ### As a User, I can add a new player
 
 - [x] As a User, I can see the button "New player"
@@ -9,6 +10,7 @@
 - [x] As a User, I can see the button "Save player"
 - [x] As a User, I can click the button "Save Player"
 - [x] As a User, I can see the result of adding a new player
+
 
 ### As a User, I can start a game
 
