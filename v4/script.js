@@ -1,5 +1,17 @@
 const app = document.querySelector(".app");
 
+function createList(playerNames) {
+  const customList = document.createElement("ul");
+
+  for (let i = 0; i < playerNames.length; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = playerNames[i];
+    customList.appendChild(listItem);
+  }
+
+  return customList;
+}
+
 function createForm() {
   const customForm = document.createElement("form");
   customForm.className = "form-add-player";
@@ -86,6 +98,7 @@ addUserForm.addEventListener("submit", (event) => {
         const myStartGameButton = document.querySelector("#start-game");
 
         myStartGameButton.addEventListener("click", () => {
+          // REIZEN BEGINNT
           app.innerHTML = "";
 
           const myInput = createInputField(
@@ -142,6 +155,13 @@ addUserForm.addEventListener("submit", (event) => {
               }
             }
           });
+
+          // MELDEN BEGINNT
+          const playerNames = playersData.map((player) => player.name);
+
+          const myPlayerNamesList = createList(playerNames);
+
+          app.appendChild(myPlayerNamesList);
         });
       }
     } else {
