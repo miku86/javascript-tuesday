@@ -70,6 +70,7 @@ addUserForm.addEventListener("submit", (event) => {
     const newPlayer = {
       id: amountOfPlayers + 1,
       name: playerInputField.value,
+      rounds: [],
     };
     playersData.push(newPlayer);
 
@@ -128,7 +129,17 @@ addUserForm.addEventListener("submit", (event) => {
                 `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit ${inputReizzahl.value} Punkte gewonnen`
               );
 
-              // speichern, wer mit welcher zahl reizen gewonnen hat
+              for (let i = 0; i < playersData.length; i++) {
+                if (selectedPlayerName === playersData[i]["name"]) {
+                  playersData[i]["rounds"].push({
+                    reizzahl: Number(inputReizzahl.value),
+                  });
+                } else {
+                  playersData[i]["rounds"].push({
+                    reizzahl: 0,
+                  });
+                }
+              }
             }
           });
         });
