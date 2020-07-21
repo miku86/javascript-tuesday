@@ -12,8 +12,8 @@
 
 #### If you are familiar with Git
 
-- Clone repo via terminal (HTTPS): `git clone https://github.com/miku86-workshops/d3-beginners.git`
-- Clone repo via terminal (SSH): `git clone git@github.com:miku86-workshops/d3-beginners.git`
+- Clone repo via terminal (HTTPS): `git clone https://github.com/miku86-workshops/javascript-tuesday.git`
+- Clone repo via terminal (SSH): `git clone git@github.com:miku86/javascript-tuesday.git`
 - Go into the folder
 
 ### Folder Structure
