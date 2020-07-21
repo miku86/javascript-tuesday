@@ -8,8 +8,8 @@ function createList(playerNames) {
   const customList = document.createElement("div");
 
   for (let i = 0; i < playerNames.length; i++) {
-    const listItem = document.createElement("p")
-    listItem.textContent = playerNames[i] + ': ';
+    const listItem = document.createElement("p");
+    listItem.textContent = playerNames[i] + ": ";
     const meldenPlayerInput = document.createElement("input");
     meldenPlayerInput.type = "text";
     meldenPlayerInput.className = playerNames[i];
@@ -162,17 +162,19 @@ addUserForm.addEventListener("submit", (event) => {
                 }
               }
 
-            // MELDEN BEGINNT
+              // MELDEN BEGINNT
 
-            app.innerHTML = "";            
-            
-            const playerNames = playersData.map((player) => player.name);
-            const myPlayerNamesList = createList(playerNames);
-            app.appendChild(myPlayerNamesList);
+              app.innerHTML = "";
 
-            const submitMeldenButton = createButton("Punkte melden", "punkte-melden");
-            app.appendChild(submitMeldenButton);
+              const playerNames = playersData.map((player) => player.name);
+              const myPlayerNamesList = createList(playerNames);
+              app.appendChild(myPlayerNamesList);
 
+              const submitMeldenButton = createButton(
+                "Punkte melden",
+                "punkte-melden"
+              );
+              app.appendChild(submitMeldenButton);
             }
           });
         });
