@@ -12,7 +12,7 @@ function createList(playerNames) {
     listItem.textContent = playerNames[i] + ": ";
     const meldenPlayerInput = document.createElement("input");
     meldenPlayerInput.type = "text";
-    meldenPlayerInput.className = playerNames[i];
+    meldenPlayerInput.className = `melden-${playersData[i]["id"]}`;
     customList.appendChild(listItem);
     listItem.appendChild(meldenPlayerInput);
   }
@@ -175,6 +175,49 @@ addUserForm.addEventListener("submit", (event) => {
                 "punkte-melden"
               );
               app.appendChild(submitMeldenButton);
+
+              submitMeldenButton.addEventListener("click", () => {
+                // checken, ob so übermittelt werden soll
+                // wenn ja, dann
+
+                const playerIds = playersData.map((player) => player.id);
+
+                console.log(playersData);
+
+                // für alle spieler
+                for (let i = 0; i < amountOfPlayers; i++) {
+                  const currentPlayerInput = document.querySelector(
+                    `.melden-${playerIds[i]}`
+                  );
+
+                  // zeige mir die daten des aktuellen spielers
+                  const currentPlayerData = playersData.filter(
+                    (player) => player.id === playerIds[i]
+                  );
+
+                  console.log(i);
+                  console.log(playerIds[i]);
+                  console.log(currentPlayerData);
+
+                  // gehe in die letzte runde des korrekten spielers
+                  const newPlayersData = playersData.map((player) => {
+                    // wenn richtigen spieler gefunden, dann hänge meldezahl an
+                    if (currentPlayerData) {
+                      return player;
+                    } else {
+                      // wenn nicht, gebe alte daten zurück
+                      return player;
+                    }
+                  });
+
+                  console.log(newPlayersData);
+                }
+
+                // inhalt des inputfeldes auslesen
+
+                // herausfinden wessen inputwert das ist
+                // bei passendem spieler in array abspeichern
+              });
             }
           });
         });
