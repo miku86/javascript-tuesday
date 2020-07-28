@@ -177,46 +177,29 @@ addUserForm.addEventListener("submit", (event) => {
               app.appendChild(submitMeldenButton);
 
               submitMeldenButton.addEventListener("click", () => {
-                // checken, ob so übermittelt werden soll
-                // wenn ja, dann
-
                 const playerIds = playersData.map((player) => player.id);
 
                 console.log(playersData);
 
-                // für alle spieler
                 for (let i = 0; i < amountOfPlayers; i++) {
                   const currentPlayerInput = document.querySelector(
                     `.melden-${playerIds[i]}`
                   );
 
-                  // zeige mir die daten des aktuellen spielers
-                  const currentPlayerData = playersData.filter(
+                  const currentPlayerMeldezahl = currentPlayerInput.value;
+
+                  const index = playersData.findIndex(
                     (player) => player.id === playerIds[i]
                   );
 
-                  console.log(i);
-                  console.log(playerIds[i]);
-                  console.log(currentPlayerData);
+                  const currentRound = playersData[index]["rounds"].length;
 
-                  // gehe in die letzte runde des korrekten spielers
-                  const newPlayersData = playersData.map((player) => {
-                    // wenn richtigen spieler gefunden, dann hänge meldezahl an
-                    if (currentPlayerData) {
-                      return player;
-                    } else {
-                      // wenn nicht, gebe alte daten zurück
-                      return player;
-                    }
-                  });
-
-                  console.log(newPlayersData);
+                  playersData[index]["rounds"][currentRound - 1][
+                    "meldezahl"
+                  ] = currentPlayerMeldezahl;
                 }
 
-                // inhalt des inputfeldes auslesen
-
-                // herausfinden wessen inputwert das ist
-                // bei passendem spieler in array abspeichern
+                console.log(playersData);
               });
             }
           });
