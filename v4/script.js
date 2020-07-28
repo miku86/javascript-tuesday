@@ -12,7 +12,7 @@ function createList(playerNames) {
     listItem.textContent = playerNames[i] + ": ";
     const meldenPlayerInput = document.createElement("input");
     meldenPlayerInput.type = "text";
-    meldenPlayerInput.className = `melden-${playersData[i]["id"]}`;
+    meldenPlayerInput.className = `meldezahl melden-${playersData[i]["id"]}`;
     customList.appendChild(listItem);
     listItem.appendChild(meldenPlayerInput);
   }
@@ -181,22 +181,47 @@ addUserForm.addEventListener("submit", (event) => {
 
                 console.log(playersData);
 
-                for (let i = 0; i < amountOfPlayers; i++) {
-                  const currentPlayerInput = document.querySelector(
-                    `.melden-${playerIds[i]}`
-                  );
+                // finde alle inputfelder der meldezahlen
+                const allMeldezahlInputs = document.querySelectorAll(
+                  ".meldezahl"
+                );
 
-                  const currentPlayerMeldezahl = currentPlayerInput.value;
+                // finde jeden einzelnen value aus jedem einzelnen input
+                const allMeldezahlValues = [...allMeldezahlInputs].map(
+                  (inputFeld) => inputFeld.value
+                );
 
-                  const index = playersData.findIndex(
-                    (player) => player.id === playerIds[i]
-                  );
+                // wenn mindestens ein input keinen value hat, dann gib fehler aus
+                const isInvalid = allMeldezahlValues.some(
+                  (value) => !value || isNaN(value)
+                );
 
-                  const currentRound = playersData[index]["rounds"].length;
+                if (isInvalid) {
+                  alert("Bitte in jedes Feld eine Zahl eintragen");
+                } else {
+                  for (let i = 0; i < amountOfPlayers; i++) {
+                    // finde inputfeld mit meldezahl
+                    const currentPlayerInput = document.querySelector(
+                      `.melden-${playerIds[i]}`
+                    );
 
-                  playersData[index]["rounds"][currentRound - 1][
-                    "meldezahl"
-                  ] = currentPlayerMeldezahl;
+                    // speichere wert aus inputfeld
+                    const currentPlayerMeldezahl = currentPlayerInput.value;
+
+                    // finde den array index des aktuellen spielers
+                    const index = playersData.findIndex(
+                      (player) => player.id === playerIds[i]
+                    );
+
+                    // finde array index für aktuelle runde
+                    const currentRound =
+                      playersData[index]["rounds"].length - 1;
+
+                    // speichere meldezahl in runden array ab
+                    playersData[index]["rounds"][currentRound][
+                      "meldezahl"
+                    ] = Number(currentPlayerMeldezahl);
+                  }
                 }
 
                 console.log(playersData);
