@@ -1,5 +1,9 @@
 const app = document.querySelector(".app");
 
+function isInvalid(values) {
+  return values.some((value) => !value || isNaN(value));
+}
+
 function createList(playerNames, titleText, className) {
   const title = document.createElement("h1");
   title.textContent = titleText;
@@ -184,22 +188,16 @@ addUserForm.addEventListener("submit", (event) => {
               submitMeldenButton.addEventListener("click", () => {
                 const playerIds = playersData.map((player) => player.id);
 
-                // finde alle inputfelder der meldezahlen
                 const allMeldezahlInputs = document.querySelectorAll(
                   ".meldenzahl"
                 );
 
-                // finde jeden einzelnen value aus jedem einzelnen input
+                // REFAKTORIEREN???
                 const allMeldezahlValues = [...allMeldezahlInputs].map(
                   (inputFeld) => inputFeld.value
                 );
 
-                // wenn mindestens ein input keinen value hat, dann gib fehler aus
-                const isInvalid = allMeldezahlValues.some(
-                  (value) => !value || isNaN(value)
-                );
-
-                if (isInvalid) {
+                if (isInvalid(allMeldezahlValues)) {
                   alert("Bitte in jedes Feld eine Zahl eintragen");
                 } else {
                   for (let i = 0; i < amountOfPlayers; i++) {
@@ -207,9 +205,6 @@ addUserForm.addEventListener("submit", (event) => {
                     const currentPlayerInput = document.querySelector(
                       `.melden-${playerIds[i]}`
                     );
-
-                    // speichere wert aus inputfeld
-                    const currentPlayerMeldezahl = currentPlayerInput.value;
 
                     // finde den array index des aktuellen spielers
                     const index = playersData.findIndex(
@@ -221,9 +216,9 @@ addUserForm.addEventListener("submit", (event) => {
                       playersData[index]["rounds"].length - 1;
 
                     // speichere meldezahl in runden array ab
-                    playersData[index]["rounds"][currentRound][
-                      "meldenzahl"
-                    ] = Number(currentPlayerMeldezahl);
+                    playersData[index]["rounds"][
+                      playersData[index]["rounds"].length - 1
+                    ]["meldenzahl"] = Number(currentPlayerInput.value);
                   }
 
                   // ERZIELTE PUNKTE EINGEBEN BEGINNT
@@ -251,20 +246,13 @@ addUserForm.addEventListener("submit", (event) => {
                       ...allErzieltePunkteInputs,
                     ].map((inputFeld) => inputFeld.value);
 
-                    const isInvalid = allErzieltePunkteValues.some(
-                      (value) => !value || isNaN(value)
-                    );
-
-                    if (isInvalid) {
+                    if (isInvalid(allErzieltePunkteValues)) {
                       alert("Bitte in jedes Feld eine Zahl eintragen");
                     } else {
                       for (let i = 0; i < amountOfPlayers; i++) {
                         const currentPlayerInput = document.querySelector(
                           `.erzieltepunkte-${playerIds[i]}`
                         );
-
-                        const currentPlayerErzieltePunktezahl =
-                          currentPlayerInput.value;
 
                         const index = playersData.findIndex(
                           (player) => player.id === playerIds[i]
@@ -275,7 +263,7 @@ addUserForm.addEventListener("submit", (event) => {
 
                         playersData[index]["rounds"][currentRound][
                           "erzieltepunktezahl"
-                        ] = Number(currentPlayerErzieltePunktezahl);
+                        ] = Number(currentPlayerInput.value);
                       }
                     }
                   });
