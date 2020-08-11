@@ -1,28 +1,10 @@
 const app = document.querySelector(".app");
 
-function createGenericList(playerNames, titleText){
+function createList(playerNames, titleText, className) {
   const title = document.createElement("h1");
   title.textContent = titleText;
   app.appendChild(title);
-}
 
-function createList(playerNames) {
-  const customList = document.createElement("div");
-
-  for (let i = 0; i < playerNames.length; i++) {
-    const listItem = document.createElement("p");
-    listItem.textContent = playerNames[i] + ": ";
-    const meldenPlayerInput = document.createElement("input");
-    meldenPlayerInput.type = "text";
-    meldenPlayerInput.className = `meldezahl melden-${playersData[i]["id"]}`;
-    customList.appendChild(listItem);
-    listItem.appendChild(meldenPlayerInput);
-  }
-
-  return customList;
-}
-
-function createListErzieltePunkte(playerNames) {
   const customList = document.createElement("div");
 
   for (let i = 0; i < playerNames.length; i++) {
@@ -30,7 +12,9 @@ function createListErzieltePunkte(playerNames) {
     listItem.textContent = playerNames[i] + ": ";
     const playerInput = document.createElement("input");
     playerInput.type = "text";
-    playerInput.className = `erzieltepunkte erzieltepunkte-${playersData[i]["id"]}`;
+
+    playerInput.className = `${className}zahl ${className}-${playersData[i]["id"]}`;
+
     customList.appendChild(listItem);
     listItem.appendChild(playerInput);
   }
@@ -184,7 +168,11 @@ addUserForm.addEventListener("submit", (event) => {
               app.innerHTML = "";
 
               const playerNames = playersData.map((player) => player.name);
-              const myPlayerNamesList = createList(playerNames);
+              const myPlayerNamesList = createList(
+                playerNames,
+                "Melden",
+                "melden"
+              );
               app.appendChild(myPlayerNamesList);
 
               const submitMeldenButton = createButton(
@@ -198,7 +186,7 @@ addUserForm.addEventListener("submit", (event) => {
 
                 // finde alle inputfelder der meldezahlen
                 const allMeldezahlInputs = document.querySelectorAll(
-                  ".meldezahl"
+                  ".meldenzahl"
                 );
 
                 // finde jeden einzelnen value aus jedem einzelnen input
@@ -234,15 +222,17 @@ addUserForm.addEventListener("submit", (event) => {
 
                     // speichere meldezahl in runden array ab
                     playersData[index]["rounds"][currentRound][
-                      "meldezahl"
+                      "meldenzahl"
                     ] = Number(currentPlayerMeldezahl);
                   }
 
                   // ERZIELTE PUNKTE EINGEBEN BEGINNT
                   app.innerHTML = "";
 
-                  const myPlayerNamesListErzieltePunkte = createListErzieltePunkte(
-                    playerNames
+                  const myPlayerNamesListErzieltePunkte = createList(
+                    playerNames,
+                    "Erzielte Punkte",
+                    "erzieltepunkte"
                   );
                   app.appendChild(myPlayerNamesListErzieltePunkte);
 
