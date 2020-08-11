@@ -25,9 +25,9 @@
 
 ### As a User, I can Melden
 
-- [ ] As a User, I can see the input "Melden"-Nummer
-- [ ] As a User, I can see the button "Melden-Nummer" bestätigen
-- [ ] As a User, I can see the submitted input of "Melden"-Nummer
+- [x] As a User, I can see the input "Melden"-Nummer
+- [x] As a User, I can see the button "Melden-Nummer" bestätigen
+- [x] As a User, I can see the submitted input of "Melden"-Nummer
 
 ### As a User, I can Save my points
 
