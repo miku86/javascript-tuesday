@@ -4,6 +4,10 @@ function isInvalid(values) {
   return values.some((value) => !value || isNaN(value));
 }
 
+function getInputValues(inputs) {
+  return [...inputs].map((inputFeld) => inputFeld.value);
+}
+
 function createList(playerNames, titleText, className) {
   const title = document.createElement("h1");
   title.textContent = titleText;
@@ -192,10 +196,7 @@ addUserForm.addEventListener("submit", (event) => {
                   ".meldenzahl"
                 );
 
-                // REFAKTORIEREN???
-                const allMeldezahlValues = [...allMeldezahlInputs].map(
-                  (inputFeld) => inputFeld.value
-                );
+                const allMeldezahlValues = getInputValues(allMeldezahlInputs);
 
                 if (isInvalid(allMeldezahlValues)) {
                   alert("Bitte in jedes Feld eine Zahl eintragen");
@@ -242,9 +243,9 @@ addUserForm.addEventListener("submit", (event) => {
                       ".erzieltepunktezahl"
                     );
 
-                    const allErzieltePunkteValues = [
-                      ...allErzieltePunkteInputs,
-                    ].map((inputFeld) => inputFeld.value);
+                    const allErzieltePunkteValues = getInputValues(
+                      allErzieltePunkteInputs
+                    );
 
                     if (isInvalid(allErzieltePunkteValues)) {
                       alert("Bitte in jedes Feld eine Zahl eintragen");
