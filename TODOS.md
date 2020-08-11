@@ -31,17 +31,16 @@
 
 ### As a User, I can Save my points
 
-- [ ] As a User, I can see the input "Erzielte Punkte"-Nummer
-- [ ] As a User, I can see the button "Erzielte Punkte" bestätigen
-- [ ] As a User, I can see the submitted input of "Erzielte Punkte"-Nummer
+- [x] As a User, I can see the input "Erzielte Punkte"-Nummer
+- [x] As a User, I can see the button "Erzielte Punkte" bestätigen
+- [x] As a User, I can see the submitted input of "Erzielte Punkte"-Nummer
 
-// solange bis alle Player gemeldet haben
+### As a User, I can see the current standings
 
 - [ ] Diverse Berechnungen der Punkte
+- [ ] Show current standings after round
 - [ ] As a User, I can see the button "New Round"
 - [ ] As a User, I can click the button "New Round"
-- [ ] As a User, I can see an empty row for this round to input the "Reiz"-Number
-- [ ] As a User, I can input a "Erzielte Punkte"-Number
 
 ## NICE TO HAVE
 
