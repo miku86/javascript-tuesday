@@ -1,10 +1,12 @@
 const app = document.querySelector(".app");
 
-function createList(playerNames) {
-  const meldenTitle = document.createElement("h1");
-  meldenTitle.textContent = "Melden";
-  app.appendChild(meldenTitle);
+function createGenericList(playerNames, titleText){
+  const title = document.createElement("h1");
+  title.textContent = titleText;
+  app.appendChild(title);
+}
 
+function createList(playerNames) {
   const customList = document.createElement("div");
 
   for (let i = 0; i < playerNames.length; i++) {
@@ -21,10 +23,6 @@ function createList(playerNames) {
 }
 
 function createListErzieltePunkte(playerNames) {
-  const title = document.createElement("h1");
-  title.textContent = "Erzielte Punkte";
-  app.appendChild(title);
-
   const customList = document.createElement("div");
 
   for (let i = 0; i < playerNames.length; i++) {
