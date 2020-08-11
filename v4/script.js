@@ -241,6 +241,44 @@ addUserForm.addEventListener("submit", (event) => {
                     "erzielte-punkte-melden"
                   );
                   app.appendChild(submitErzieltePunkteButton);
+
+                  submitErzieltePunkteButton.addEventListener("click", () => {
+                    const allErzieltePunkteInputs = document.querySelectorAll(
+                      ".erzieltepunktezahl"
+                    );
+
+                    const allErzieltePunkteValues = [
+                      ...allErzieltePunkteInputs,
+                    ].map((inputFeld) => inputFeld.value);
+
+                    const isInvalid = allErzieltePunkteValues.some(
+                      (value) => !value || isNaN(value)
+                    );
+
+                    if (isInvalid) {
+                      alert("Bitte in jedes Feld eine Zahl eintragen");
+                    } else {
+                      for (let i = 0; i < amountOfPlayers; i++) {
+                        const currentPlayerInput = document.querySelector(
+                          `.erzieltepunkte-${playerIds[i]}`
+                        );
+
+                        const currentPlayerErzieltePunktezahl =
+                          currentPlayerInput.value;
+
+                        const index = playersData.findIndex(
+                          (player) => player.id === playerIds[i]
+                        );
+
+                        const currentRound =
+                          playersData[index]["rounds"].length - 1;
+
+                        playersData[index]["rounds"][currentRound][
+                          "erzieltepunktezahl"
+                        ] = Number(currentPlayerErzieltePunktezahl);
+                      }
+                    }
+                  });
                 }
               });
             }
