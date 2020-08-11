@@ -20,6 +20,26 @@ function createList(playerNames) {
   return customList;
 }
 
+function createListErzieltePunkte(playerNames) {
+  const title = document.createElement("h1");
+  title.textContent = "Erzielte Punkte";
+  app.appendChild(title);
+
+  const customList = document.createElement("div");
+
+  for (let i = 0; i < playerNames.length; i++) {
+    const listItem = document.createElement("p");
+    listItem.textContent = playerNames[i] + ": ";
+    const playerInput = document.createElement("input");
+    playerInput.type = "text";
+    playerInput.className = `erzieltepunkte erzieltepunkte-${playersData[i]["id"]}`;
+    customList.appendChild(listItem);
+    listItem.appendChild(playerInput);
+  }
+
+  return customList;
+}
+
 function createForm() {
   const customForm = document.createElement("form");
   customForm.className = "form-add-player";
@@ -163,7 +183,6 @@ addUserForm.addEventListener("submit", (event) => {
               }
 
               // MELDEN BEGINNT
-
               app.innerHTML = "";
 
               const playerNames = playersData.map((player) => player.name);
@@ -222,6 +241,18 @@ addUserForm.addEventListener("submit", (event) => {
                   }
 
                   // ERZIELTE PUNKTE EINGEBEN BEGINNT
+                  app.innerHTML = "";
+
+                  const myPlayerNamesListErzieltePunkte = createListErzieltePunkte(
+                    playerNames
+                  );
+                  app.appendChild(myPlayerNamesListErzieltePunkte);
+
+                  const submitErzieltePunkteButton = createButton(
+                    "Erzielte Punkte melden",
+                    "erzielte-punkte-melden"
+                  );
+                  app.appendChild(submitErzieltePunkteButton);
                 }
               });
             }
