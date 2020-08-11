@@ -202,21 +202,17 @@ addUserForm.addEventListener("submit", (event) => {
                   alert("Bitte in jedes Feld eine Zahl eintragen");
                 } else {
                   for (let i = 0; i < amountOfPlayers; i++) {
-                    // finde inputfeld mit meldezahl
                     const currentPlayerInput = document.querySelector(
                       `.melden-${playerIds[i]}`
                     );
 
-                    // finde den array index des aktuellen spielers
                     const index = playersData.findIndex(
                       (player) => player.id === playerIds[i]
                     );
 
-                    // finde array index für aktuelle runde
                     const currentRound =
                       playersData[index]["rounds"].length - 1;
 
-                    // speichere meldezahl in runden array ab
                     playersData[index]["rounds"][
                       playersData[index]["rounds"].length - 1
                     ]["meldenzahl"] = Number(currentPlayerInput.value);
