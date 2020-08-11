@@ -179,8 +179,6 @@ addUserForm.addEventListener("submit", (event) => {
               submitMeldenButton.addEventListener("click", () => {
                 const playerIds = playersData.map((player) => player.id);
 
-                console.log(playersData);
-
                 // finde alle inputfelder der meldezahlen
                 const allMeldezahlInputs = document.querySelectorAll(
                   ".meldezahl"
@@ -222,9 +220,9 @@ addUserForm.addEventListener("submit", (event) => {
                       "meldezahl"
                     ] = Number(currentPlayerMeldezahl);
                   }
-                }
 
-                console.log(playersData);
+                  // ERZIELTE PUNKTE EINGEBEN BEGINNT
+                }
               });
             }
           });
