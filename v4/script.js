@@ -1,5 +1,3 @@
-const app = findElement(".app");
-
 function findElement(selector) {
   return document.querySelector(selector);
 }
@@ -84,15 +82,13 @@ function createDropdown(players) {
 }
 
 createForm();
-
 createDiv("players");
 
 let amountOfPlayers = 0;
+let playersData = [];
+const app = findElement(".app");
 const playerInputField = findElement(".input-player-name");
 const playersContainer = findElement(".players");
-
-let playersData = [];
-
 const addUserForm = findElement(".form-add-player");
 
 addUserForm.addEventListener("submit", (event) => {
