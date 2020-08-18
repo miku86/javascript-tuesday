@@ -1,5 +1,18 @@
+const app = findElement(".app");
+createForm();
+createDiv("players");
+const playerInputField = findElement(".input-player-name");
+const playersContainer = findElement(".players");
+const addUserForm = findElement(".form-add-player");
+let amountOfPlayers = 0;
+let playersData = [];
+
 function findElement(selector) {
   return document.querySelector(selector);
+}
+
+function createElement(tag) {
+  return document.createElement(tag);
 }
 
 function isInvalid(values) {
@@ -11,16 +24,16 @@ function getInputValues(inputs) {
 }
 
 function createList(playerNames, titleText, className) {
-  const title = document.createElement("h1");
+  const title = createElement("h1");
   title.textContent = titleText;
   app.appendChild(title);
 
-  const customList = document.createElement("div");
+  const customList = createElement("div");
 
   for (let i = 0; i < playerNames.length; i++) {
-    const listItem = document.createElement("p");
+    const listItem = createElement("p");
     listItem.textContent = playerNames[i] + ": ";
-    const playerInput = document.createElement("input");
+    const playerInput = createElement("input");
     playerInput.type = "text";
 
     playerInput.className = `${className}zahl ${className}-${playersData[i]["id"]}`;
@@ -33,7 +46,7 @@ function createList(playerNames, titleText, className) {
 }
 
 function createForm() {
-  const customForm = document.createElement("form");
+  const customForm = createElement("form");
   customForm.className = "form-add-player";
   app.appendChild(customForm);
 
@@ -46,14 +59,14 @@ function createForm() {
 }
 
 function createButton(buttonText, buttonId) {
-  const customButton = document.createElement("button");
+  const customButton = createElement("button");
   customButton.textContent = buttonText;
   customButton.id = buttonId;
   return customButton;
 }
 
 function createInputField(inputPlaceholder, inputClassname) {
-  const playerInput = document.createElement("input");
+  const playerInput = createElement("input");
   playerInput.type = "text";
   playerInput.className = inputClassname;
   playerInput.placeholder = inputPlaceholder;
@@ -62,17 +75,17 @@ function createInputField(inputPlaceholder, inputClassname) {
 }
 
 function createDiv(newClass) {
-  const customDiv = document.createElement("div");
+  const customDiv = createElement("div");
   customDiv.className = newClass;
   app.appendChild(customDiv);
 }
 
 function createDropdown(players) {
-  const playerNameDropdown = document.createElement("select");
+  const playerNameDropdown = createElement("select");
   playerNameDropdown.className = "playerSelected";
 
   players.forEach((player) => {
-    const playerNameOption = document.createElement("option");
+    const playerNameOption = createElement("option");
     playerNameOption.textContent = player["name"];
     playerNameOption.value = player["id"];
     playerNameDropdown.appendChild(playerNameOption);
@@ -81,21 +94,15 @@ function createDropdown(players) {
   return playerNameDropdown;
 }
 
-createForm();
-createDiv("players");
-
-let amountOfPlayers = 0;
-let playersData = [];
-const app = findElement(".app");
-const playerInputField = findElement(".input-player-name");
-const playersContainer = findElement(".players");
-const addUserForm = findElement(".form-add-player");
+function clearPage() {
+  app.innerHTML = "";
+}
 
 addUserForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   if (playerInputField.value.length > 2) {
-    const player = document.createElement("p");
+    const player = createElement("p");
     player.textContent = playerInputField.value;
     const newPlayer = {
       id: amountOfPlayers + 1,
@@ -117,7 +124,7 @@ addUserForm.addEventListener("submit", (event) => {
 
         myStartGameButton.addEventListener("click", () => {
           // REIZEN BEGINNT
-          app.innerHTML = "";
+          clearPage();
 
           const myInput = createInputField(
             "Reizenzahl eingeben",
@@ -173,7 +180,7 @@ addUserForm.addEventListener("submit", (event) => {
               }
 
               // MELDEN BEGINNT
-              app.innerHTML = "";
+              clearPage();
 
               const playerNames = playersData.map((player) => player.name);
               const myPlayerNamesList = createList(
@@ -219,7 +226,7 @@ addUserForm.addEventListener("submit", (event) => {
                   }
 
                   // ERZIELTE PUNKTE EINGEBEN BEGINNT
-                  app.innerHTML = "";
+                  clearPage();
 
                   const myPlayerNamesListErzieltePunkte = createList(
                     playerNames,
