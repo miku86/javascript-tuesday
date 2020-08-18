@@ -17,6 +17,16 @@ function confirmInput(name, value) {
   return `Möchtest du Folgendes bestätigen: ${name} - ${value}`;
 }
 
+function confirmInputs(entries) {
+  let message = "";
+
+  for (let i = 0; i < entries.length; i++) {
+    message += `Möchtest du Folgendes bestätigen: ${entries[i]["name"]} - ${entries[i]["value"]}\n`;
+  }
+
+  return message;
+}
+
 function findElement(selector) {
   return document.querySelector(selector);
 }
@@ -216,6 +226,17 @@ addUserForm.addEventListener("submit", (event) => {
                 if (isInvalid(allMeldezahlValues)) {
                   alert(noEmptyValues);
                 } else {
+                  let entries = [];
+
+                  for (let i = 0; i < playerNames.length; i++) {
+                    entries.push({
+                      name: playerNames[i],
+                      value: allMeldezahlValues[i],
+                    });
+                  }
+
+                  alert(confirmInputs(entries));
+
                   for (let i = 0; i < amountOfPlayers; i++) {
                     const currentPlayerInput = findElement(
                       `.melden-${playerIds[i]}`
