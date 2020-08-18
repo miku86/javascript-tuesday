@@ -7,6 +7,16 @@ const addUserForm = findElement(".form-add-player");
 let amountOfPlayers = 0;
 let playersData = [];
 
+const reachedMaxPlayers = "Maximal 4 Spieler erlaubt!";
+const insertReizzahl = "Bitte korrekte Reizzahl eingeben";
+const noEmptyValues = "Bitte in jedes Feld eine Zahl eintragen";
+const insertLongerName = "Bitte längeren Name eingeben";
+
+// const confirmInput = (name, value) => `Möchtest du Folgendes bestätigen: ${name} - ${value}`;
+function confirmInput(name, value) {
+  return `Möchtest du Folgendes bestätigen: ${name} - ${value}`;
+}
+
 function findElement(selector) {
   return document.querySelector(selector);
 }
@@ -153,7 +163,7 @@ addUserForm.addEventListener("submit", (event) => {
           const submitReizzahl = findElement("#submit-reizzahl");
           submitReizzahl.addEventListener("click", () => {
             if (!inputReizzahl.value || isNaN(inputReizzahl.value)) {
-              alert("Bitte korrekte Reizzahl eingeben");
+              alert(insertReizzahl);
             } else {
               let selectedPlayerName;
 
@@ -163,9 +173,7 @@ addUserForm.addEventListener("submit", (event) => {
                 }
               }
 
-              alert(
-                `Möchtest du Folgendes bestätigen: ${selectedPlayerName} hat mit ${inputReizzahl.value} Punkte gewonnen`
-              );
+              alert(confirmInput(selectedPlayerName, inputReizzahl.value));
 
               for (let i = 0; i < playersData.length; i++) {
                 if (selectedPlayerName === playersData[i]["name"]) {
@@ -206,7 +214,7 @@ addUserForm.addEventListener("submit", (event) => {
                 const allMeldezahlValues = getInputValues(allMeldezahlInputs);
 
                 if (isInvalid(allMeldezahlValues)) {
-                  alert("Bitte in jedes Feld eine Zahl eintragen");
+                  alert(noEmptyValues);
                 } else {
                   for (let i = 0; i < amountOfPlayers; i++) {
                     const currentPlayerInput = findElement(
@@ -251,7 +259,7 @@ addUserForm.addEventListener("submit", (event) => {
                     );
 
                     if (isInvalid(allErzieltePunkteValues)) {
-                      alert("Bitte in jedes Feld eine Zahl eintragen");
+                      alert(noEmptyValues);
                     } else {
                       for (let i = 0; i < amountOfPlayers; i++) {
                         const currentPlayerInput = findElement(
@@ -278,9 +286,9 @@ addUserForm.addEventListener("submit", (event) => {
         });
       }
     } else {
-      alert("Maximal 4 Spieler erlaubt!");
+      alert(reachedMaxPlayers);
     }
   } else {
-    alert("Bitte längeren Name eingeben");
+    alert(insertLongerName);
   }
 });
