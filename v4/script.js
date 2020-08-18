@@ -1,4 +1,8 @@
-const app = document.querySelector(".app");
+const app = findElement(".app");
+
+function findElement(selector) {
+  return document.querySelector(selector);
+}
 
 function isInvalid(values) {
   return values.some((value) => !value || isNaN(value));
@@ -35,7 +39,7 @@ function createForm() {
   customForm.className = "form-add-player";
   app.appendChild(customForm);
 
-  const myForm = document.querySelector(".form-add-player");
+  const myForm = findElement(".form-add-player");
   const myInputField = createInputField("New Player Name", "input-player-name");
   myForm.appendChild(myInputField);
 
@@ -84,12 +88,12 @@ createForm();
 createDiv("players");
 
 let amountOfPlayers = 0;
-const playerInputField = document.querySelector(".input-player-name");
-const playersContainer = document.querySelector(".players");
+const playerInputField = findElement(".input-player-name");
+const playersContainer = findElement(".players");
 
 let playersData = [];
 
-const addUserForm = document.querySelector(".form-add-player");
+const addUserForm = findElement(".form-add-player");
 
 addUserForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -113,7 +117,7 @@ addUserForm.addEventListener("submit", (event) => {
         const startGameButton = createButton("Start Game", "start-game");
         app.appendChild(startGameButton);
 
-        const myStartGameButton = document.querySelector("#start-game");
+        const myStartGameButton = findElement("#start-game");
 
         myStartGameButton.addEventListener("click", () => {
           // REIZEN BEGINNT
@@ -134,16 +138,16 @@ addUserForm.addEventListener("submit", (event) => {
           );
           app.appendChild(addReiznummerButton);
 
-          const inputReizzahl = document.querySelector(".input-reizen");
+          const inputReizzahl = findElement(".input-reizen");
 
           let selectedPlayerInDropdownId = playersData[0]["id"];
 
-          const dropdown = document.querySelector(".playerSelected");
+          const dropdown = findElement(".playerSelected");
           dropdown.addEventListener("change", (event) => {
             selectedPlayerInDropdownId = event.target.value;
           });
 
-          const submitReizzahl = document.querySelector("#submit-reizzahl");
+          const submitReizzahl = findElement("#submit-reizzahl");
           submitReizzahl.addEventListener("click", () => {
             if (!inputReizzahl.value || isNaN(inputReizzahl.value)) {
               alert("Bitte korrekte Reizzahl eingeben");
@@ -202,7 +206,7 @@ addUserForm.addEventListener("submit", (event) => {
                   alert("Bitte in jedes Feld eine Zahl eintragen");
                 } else {
                   for (let i = 0; i < amountOfPlayers; i++) {
-                    const currentPlayerInput = document.querySelector(
+                    const currentPlayerInput = findElement(
                       `.melden-${playerIds[i]}`
                     );
 
@@ -247,7 +251,7 @@ addUserForm.addEventListener("submit", (event) => {
                       alert("Bitte in jedes Feld eine Zahl eintragen");
                     } else {
                       for (let i = 0; i < amountOfPlayers; i++) {
-                        const currentPlayerInput = document.querySelector(
+                        const currentPlayerInput = findElement(
                           `.erzieltepunkte-${playerIds[i]}`
                         );
 
