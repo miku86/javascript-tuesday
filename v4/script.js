@@ -12,6 +12,18 @@ const insertReizzahl = "Bitte korrekte Reizzahl eingeben";
 const noEmptyValues = "Bitte in jedes Feld eine Zahl eintragen";
 const insertLongerName = "Bitte längeren Name eingeben";
 
+function hasWonReizen(reizzahl) {
+  return reizzahl > 0;
+}
+
+function hasEz(erzieltepunktezahl) {
+  return erzieltepunktezahl > 0;
+}
+
+function sumMzEZ(meldenzahl, erzieltepunktezahl) {
+  return meldenzahl + erzieltepunktezahl;
+}
+
 // const confirmInput = (name, value) => `Möchtest du Folgendes bestätigen: ${name} - ${value}`;
 function confirmInput(name, value) {
   return `Möchtest du Folgendes bestätigen: ${name} - ${value}`;
@@ -297,7 +309,39 @@ addUserForm.addEventListener("submit", (event) => {
                         playersData[index]["rounds"][currentRound][
                           "erzieltepunktezahl"
                         ] = Number(currentPlayerInput.value);
+
+                        const round =
+                          playersData[index]["rounds"][currentRound];
+
+                        const {
+                          reizzahl,
+                          meldenzahl,
+                          erzieltepunktezahl,
+                        } = round;
+
+                        if (!hasWonReizen(reizzahl)) {
+                          if (hasEz(erzieltepunktezahl)) {
+                            round["roundTotal"] = sumMzEZ(
+                              meldenzahl,
+                              erzieltepunktezahl
+                            );
+                          } else {
+                            round["roundTotal"] = 0;
+                          }
+                        } else {
+                          if (
+                            sumMzEZ(meldenzahl, erzieltepunktezahl) >= reizzahl
+                          ) {
+                            round["roundTotal"] = sumMzEZ(
+                              meldenzahl,
+                              erzieltepunktezahl
+                            );
+                          } else {
+                            round["roundTotal"] = -reizzahl;
+                          }
+                        }
                       }
+                      console.log(playersData);
                     }
                   });
                 }
