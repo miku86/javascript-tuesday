@@ -37,7 +37,11 @@
 
 ### As a User, I can see the current standings
 
-- [ ] Diverse Berechnungen der Punkte
+- [x] nicht reizen gewonnen => hasEz ? (sumMzEZ) : 0
+- [x] nicht reizen gewonnen + reizen gewonnen verloren => hasEz ? (sumMzEZ) + 40 : 0
+- [x] reizen gewonnen => (sumMzEZ) >= rz ? (sumMzEZ) : -rz
+- [ ] rz 300, durchspielen, ez 250 => summe egal => + 1.000
+- [ ] rz 300, durchspielen, ez 240 => summe egal => - 1.000
 - [ ] Show current standings after round
 - [ ] As a User, I can see the button "New Round"
 - [ ] As a User, I can click the button "New Round"
