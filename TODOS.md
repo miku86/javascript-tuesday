@@ -42,6 +42,13 @@
 - [x] reizen gewonnen => (sumMzEZ) >= rz ? (sumMzEZ) : -rz
 - [ ] rz 300, durchspielen, ez 250 => summe egal => + 1.000
 - [ ] rz 300, durchspielen, ez 240 => summe egal => - 1.000
+- [x] create chart skeleton
+- [ ] add correct data
+- [ ] x achse label
+- [ ] y achse label
+- [ ] wert der balken
+- [ ] balken mittig starten
+- [ ] balken farbe ändern
 - [ ] Show current standings after round
 - [ ] As a User, I can see the button "New Round"
 - [ ] As a User, I can click the button "New Round"
