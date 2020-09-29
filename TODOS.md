@@ -43,7 +43,7 @@
 - [ ] rz 300, durchspielen, ez 250 => summe egal => + 1.000
 - [ ] rz 300, durchspielen, ez 240 => summe egal => - 1.000
 - [x] create chart skeleton
-- [ ] x achse label (each player name)
+- [x] x achse label (each player name)
 - [ ] y achse label (round points)
 - [ ] wert der balken (points of each player)
 - [ ] balken mittig starten (zentrieren)
