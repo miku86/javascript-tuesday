@@ -14,12 +14,13 @@ const playersData = [100, 200, 300];
 
 const barWidth = svgWidth / playersData.length;
 const barPadding = 5;
-const rectWidth = 20;
+const rectWidth = 40;
 
 container
-  .selectAll("rect")
+  .selectAll("g")
   .data(playersData)
   .enter()
+  .append("g")
   .append("rect")
   .attr("y", function (d) {
     return svgHeight - d;
@@ -31,4 +32,17 @@ container
   .attr("transform", function (d, i) {
     const translate = [barWidth * i, 0];
     return "translate(" + translate + ")";
+  });
+
+container
+  .selectAll("g")
+  .append("text")
+  .attr("x", function (d, i) {
+    return barWidth * i + rectWidth / 2;
+  })
+  .attr("y", svgHeight - 20)
+  .style("fill", "darkOrange")
+  .style("text-anchor", "middle")
+  .text(function (d, i) {
+    return i + 1;
   });
