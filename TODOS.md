@@ -43,12 +43,12 @@
 - [ ] rz 300, durchspielen, ez 250 => summe egal => + 1.000
 - [ ] rz 300, durchspielen, ez 240 => summe egal => - 1.000
 - [x] create chart skeleton
+- [ ] x achse label (each player name)
+- [ ] y achse label (round points)
+- [ ] wert der balken (points of each player)
+- [ ] balken mittig starten (zentrieren)
+- [ ] balken farbe ändern (feste)
 - [ ] add correct data
-- [ ] x achse label
-- [ ] y achse label
-- [ ] wert der balken
-- [ ] balken mittig starten
-- [ ] balken farbe ändern
 - [ ] Show current standings after round
 - [ ] As a User, I can see the button "New Round"
 - [ ] As a User, I can click the button "New Round"
