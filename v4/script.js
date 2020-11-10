@@ -1,6 +1,15 @@
 function createDiagram(data) {
+  function calcSvgHeight() {
+    if (window.innerHeight >= 500) {
+      return 500;
+    } else {
+      return window.innerHeight * 0.8;
+    }
+  }
+
   const svgWidth = 300;
-  const svgHeight = 300;
+  const svgHeight = calcSvgHeight();
+
   const svgBackgroundcolor = "grey";
 
   const container = d3
