@@ -3,9 +3,6 @@ function createDiagram(data) {
   const svgHeight = 300;
   const svgBackgroundcolor = "grey";
 
-  console.log("angekommen in D3 function");
-  console.log(data);
-
   const container = d3
     .select(".chart")
     .attr("width", svgWidth)
@@ -60,8 +57,6 @@ function createDiagram(data) {
       return i + 1;
     });
 }
-
-////////////////////////
 
 const app = findElement(".app");
 createForm();
