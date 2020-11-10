@@ -23,6 +23,12 @@ function createDiagram(data) {
   const barPadding = 5;
   const rectWidth = 40;
 
+  // zeige für jeden spieler:
+  // name: als text, auf x-achse, zentriert unter balken
+  // punkte: als text, zentriert über balken
+  // balken: rundengewinner hat längsten, andere passen sich an relativ
+  // diagramm: feste höhe 80%, aber max. 500px
+
   container
     .selectAll("g")
     .data(playersData)
