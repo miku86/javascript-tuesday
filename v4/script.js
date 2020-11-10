@@ -428,6 +428,7 @@ addUserForm.addEventListener("submit", (event) => {
                         });
                       }
 
+                      clearPage();
                       createDiagram(roundData);
                     }
                   });
