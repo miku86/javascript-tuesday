@@ -12,7 +12,12 @@ function createDiagram(data) {
     .attr("height", svgHeight)
     .style("background-color", svgBackgroundcolor);
 
-  const playersData = [100, 200, 300];
+  const playersData = [];
+
+  for (let i = 0; i < data.length; i++) {
+    const currentPoints = data[i]["roundTotal"];
+    playersData.push(currentPoints);
+  }
 
   const barWidth = svgWidth / playersData.length;
   const barPadding = 5;
