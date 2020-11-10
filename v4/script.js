@@ -29,12 +29,6 @@ function createDiagram(data) {
   const barPadding = 5;
   const rectWidth = 40;
 
-  // zeige für jeden spieler:
-  // name: als text, auf x-achse, zentriert unter balken
-  // punkte: als text, zentriert über balken
-  // balken: rundengewinner hat längsten, andere passen sich an relativ
-  // diagramm: feste höhe 80%, aber max. 500px
-
   container
     .selectAll("g")
     .data(playersData)
@@ -52,6 +46,7 @@ function createDiagram(data) {
       const translate = [barWidth * i, 0];
       return "translate(" + translate + ")";
     });
+  // TODO: rausfinden warum balken nicht erscheinen
 
   container
     .selectAll("g")
@@ -61,10 +56,13 @@ function createDiagram(data) {
     })
     .attr("y", svgHeight - 20)
     .style("fill", "darkOrange")
-    .style("text-anchor", "middle")
-    .text(function (d, i) {
-      return i + 1;
-    });
+    .style("text-anchor", "middle");
+  // TODO: spielername unter balken zentriert
+  // .text(function (d, i) {
+  //   return i + 1;
+  // });
+
+  // TODO: punkte: als text, zentriert über balken
 }
 
 const app = findElement(".app");
