@@ -29,20 +29,23 @@ function createDiagram(data) {
   const barPadding = 5;
   const rectWidth = 40;
 
+  // TODO: move .chart in .app
+
   d3.select(".chart")
-    .append("svg")
+    .append("svg") // TODO: svg height und width
     .selectAll(".chart")
     .data(playersData)
     .enter()
     .append("rect")
     .attr("x", function (d) {
+      // TODO: x verteilt von links nach rechts
       return 0;
     })
     .attr("y", function (d) {
       return svgHeight - d;
     })
     .attr("height", function (d) {
-      return d;
+      return d; // TODO: überlegen wie relative Höhe
     })
     .attr("width", rectWidth);
   // TODO: rausfinden warum balken nicht erscheinen
