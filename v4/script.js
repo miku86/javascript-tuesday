@@ -14,8 +14,8 @@ function createDiagram(data) {
 
   const container = d3
     .select(".chart")
-    .attr("width", svgWidth)
-    .attr("height", svgHeight)
+    .style("width", svgWidth + "px")
+    .style("height", svgHeight + "px")
     .style("background-color", svgBackgroundcolor);
 
   const playersData = [];
@@ -29,23 +29,22 @@ function createDiagram(data) {
   const barPadding = 5;
   const rectWidth = 40;
 
-  container
-    .selectAll("g")
+  d3.select(".chart")
+    .append("svg")
+    .selectAll(".chart")
     .data(playersData)
     .enter()
-    .append("g")
     .append("rect")
+    .attr("x", function (d) {
+      return 0;
+    })
     .attr("y", function (d) {
       return svgHeight - d;
     })
     .attr("height", function (d) {
       return d;
     })
-    .attr("width", rectWidth)
-    .attr("transform", function (d, i) {
-      const translate = [barWidth * i, 0];
-      return "translate(" + translate + ")";
-    });
+    .attr("width", rectWidth);
   // TODO: rausfinden warum balken nicht erscheinen
 
   container
