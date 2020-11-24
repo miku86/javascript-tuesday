@@ -7,7 +7,10 @@ function createDiagram(data) {
     }
   }
 
-  const svgWidth = 300;
+  const barMargin = 30;
+  const barWidth = 40;
+  const containerBar = 2 * barMargin + barWidth;
+  const svgWidth = data.length * containerBar;
   const svgHeight = calcSvgHeight();
 
   const svgBackgroundcolor = "grey";
@@ -15,7 +18,7 @@ function createDiagram(data) {
   const container = d3
     .select(".chart")
     .style("width", svgWidth + "px")
-    .style("height", svgHeight + "px")
+    .style("height", svgHeight + "px");
 
   const playersData = [];
 
@@ -24,21 +27,14 @@ function createDiagram(data) {
     playersData.push(currentPoints);
   }
 
-  const barWidth = svgWidth / playersData.length;
-  const barPadding = 5;
-  const rectWidth = 40;
-
-  // TODO: move .chart in .app
-
   d3.select(".chart")
     .append("svg") // TODO: svg height und width
     .selectAll(".chart")
     .data(playersData)
     .enter()
     .append("rect")
-    .attr("x", function (d) {
-      // TODO: x verteilt von links nach rechts
-      return 0;
+    .attr("x", function (d, i) {
+      return i * containerBar + barMargin;
     })
     .attr("y", function (d) {
       return svgHeight - d;
@@ -46,7 +42,7 @@ function createDiagram(data) {
     .attr("height", function (d) {
       return d; // TODO: überlegen wie relative Höhe
     })
-    .attr("width", rectWidth);
+    .attr("width", barWidth);
   // TODO: rausfinden warum balken nicht erscheinen
 
   d3.select("svg")
@@ -58,7 +54,7 @@ function createDiagram(data) {
     .selectAll("g")
     .append("text")
     .attr("x", function (d, i) {
-      return barWidth * i + rectWidth / 2;
+      return containerBar * i + barWidth / 2;
     })
     .attr("y", svgHeight - 20)
     .style("fill", "darkOrange")
