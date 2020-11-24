@@ -28,7 +28,7 @@ function createDiagram(data) {
   }
 
   d3.select(".chart")
-    .append("svg") // TODO: svg height und width
+    .append("svg")
     .selectAll(".chart")
     .data(playersData)
     .enter()
@@ -43,7 +43,6 @@ function createDiagram(data) {
       return d; // TODO: überlegen wie relative Höhe
     })
     .attr("width", barWidth);
-  // TODO: rausfinden warum balken nicht erscheinen
 
   d3.select("svg")
     .style("width", svgWidth + "px")
