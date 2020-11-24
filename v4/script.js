@@ -16,7 +16,6 @@ function createDiagram(data) {
     .select(".chart")
     .style("width", svgWidth + "px")
     .style("height", svgHeight + "px")
-    .style("background-color", svgBackgroundcolor);
 
   const playersData = [];
 
@@ -49,6 +48,11 @@ function createDiagram(data) {
     })
     .attr("width", rectWidth);
   // TODO: rausfinden warum balken nicht erscheinen
+
+  d3.select("svg")
+    .style("width", svgWidth + "px")
+    .style("height", svgHeight + "px")
+    .style("background-color", svgBackgroundcolor);
 
   container
     .selectAll("g")
