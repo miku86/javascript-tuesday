@@ -66,6 +66,28 @@ function createDiagram(data) {
   // TODO: punkte: als text, zentriert über balken
 }
 
+function randomName() {
+  const names = [
+    "Adolf",
+    "Alfred",
+    "Bertram",
+    "Fridolin",
+    "Fritz",
+    "Hans",
+    "Horst",
+    "Max",
+    "Peter",
+  ];
+  const randomName = names[Math.floor(Math.random() * names.length)];
+  return randomName;
+}
+
+function randomNumber() {
+  const MIN = 100;
+  const MAX = 500;
+  return Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+}
+
 const app = findElement(".app");
 createForm();
 createDiv("players");
@@ -138,6 +160,8 @@ function createList(playerNames, titleText, className) {
 
     playerInput.className = `${className}zahl ${className}-${playersData[i]["id"]}`;
 
+    playerInput.value = randomNumber();
+
     customList.appendChild(listItem);
     listItem.appendChild(playerInput);
   }
@@ -151,7 +175,11 @@ function createForm() {
   app.appendChild(customForm);
 
   const myForm = findElement(".form-add-player");
-  const myInputField = createInputField("New Player Name", "input-player-name");
+  const myInputField = createInputField(
+    "New Player Name",
+    "input-player-name",
+    "name" // for dummy data
+  );
   myForm.appendChild(myInputField);
 
   const myButton = createButton("Add Player", "add-player");
@@ -165,12 +193,13 @@ function createButton(buttonText, buttonId) {
   return customButton;
 }
 
-function createInputField(inputPlaceholder, inputClassname) {
+function createInputField(inputPlaceholder, inputClassname, type) {
   const playerInput = createElement("input");
   playerInput.type = "text";
   playerInput.className = inputClassname;
   playerInput.placeholder = inputPlaceholder;
   playerInput.autofocus = true;
+  playerInput.value = type === "name" ? randomName() : randomNumber();
   return playerInput;
 }
 
@@ -213,7 +242,7 @@ addUserForm.addEventListener("submit", (event) => {
 
     if (amountOfPlayers < 4) {
       playersContainer.appendChild(player);
-      playerInputField.value = "";
+      playerInputField.value = randomName();
       amountOfPlayers = amountOfPlayers + 1;
 
       if (amountOfPlayers === 3) {
@@ -228,7 +257,8 @@ addUserForm.addEventListener("submit", (event) => {
 
           const myInput = createInputField(
             "Reizenzahl eingeben",
-            "input-reizen"
+            "input-reizen",
+            "number" // for dummy data
           );
           app.appendChild(myInput);
 
@@ -427,8 +457,9 @@ addUserForm.addEventListener("submit", (event) => {
                         });
                       }
 
-                      clearPage();
-                      createDiagram(roundData);
+                      // clearPage();
+                      // createDiagram(roundData);
+                      console.log(playersData);
                     }
                   });
                 }
