@@ -6,7 +6,7 @@ function createDiagram(data) {
   const scalingFactor = 4;
   const svgHeight = 2000 / scalingFactor;
 
-  const svgBackgroundcolor = "grey";
+  const svgBackgroundcolor = "white";
 
   const container = d3
     .select(".chart")
@@ -16,8 +16,10 @@ function createDiagram(data) {
   const playersData = [];
 
   for (let i = 0; i < data.length; i++) {
-    const currentPoints = data[i]["roundTotal"];
-    playersData.push(currentPoints);
+    const name = data[i]["name"];
+    const points = data[i]["roundTotal"];
+
+    playersData.push({ name, points });
   }
 
   d3.select(".chart")
@@ -26,14 +28,14 @@ function createDiagram(data) {
     .data(playersData)
     .enter()
     .append("rect")
-    .attr("x", function (d, i) {
+    .attr("x", function (_, i) {
       return i * containerBar + barMargin;
     })
     .attr("y", function (d) {
-      return svgHeight - d / scalingFactor;
+      return svgHeight - d.points / scalingFactor;
     })
     .attr("height", function (d) {
-      return d / scalingFactor;
+      return d.points / scalingFactor;
     })
     .attr("width", barWidth);
 
@@ -42,21 +44,23 @@ function createDiagram(data) {
     .style("height", svgHeight + "px")
     .style("background-color", svgBackgroundcolor);
 
-  container
-    .selectAll("g")
+  d3.select("svg")
+    .selectAll("svg")
+    .data(playersData)
+    .enter()
     .append("text")
-    .attr("x", function (d, i) {
-      return containerBar * i + barWidth / 2;
+    .attr("x", function (_, i) {
+      return i * containerBar + barMargin + barWidth / 2;
     })
-    .attr("y", svgHeight - 20)
-    .style("fill", "darkOrange")
-    .style("text-anchor", "middle");
-  // TODO: spielername unter balken zentriert
-  // .text(function (d, i) {
-  //   return i + 1;
-  // });
-
-  // TODO: punkte: als text, zentriert über balken
+    .attr("y", function (d, i) {
+      return svgHeight - d.points / scalingFactor - 20;
+    })
+    .style("fill", "orange")
+    .style("text-anchor", "middle")
+    .text(function (d) {
+      return d.points;
+    });
+  // TODO: besseres Diagramm, welches Höhe der Balken mit einbezieht
 }
 
 function randomName() {
