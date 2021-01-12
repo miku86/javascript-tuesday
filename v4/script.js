@@ -1,17 +1,10 @@
 function createDiagram(data) {
-  function calcSvgHeight() {
-    if (window.innerHeight >= 500) {
-      return 500;
-    } else {
-      return window.innerHeight * 0.8;
-    }
-  }
-
   const barMargin = 30;
   const barWidth = 40;
   const containerBar = 2 * barMargin + barWidth;
   const svgWidth = data.length * containerBar;
-  const svgHeight = calcSvgHeight();
+  const scalingFactor = 4;
+  const svgHeight = 2000 / scalingFactor;
 
   const svgBackgroundcolor = "grey";
 
@@ -37,10 +30,10 @@ function createDiagram(data) {
       return i * containerBar + barMargin;
     })
     .attr("y", function (d) {
-      return svgHeight - d;
+      return svgHeight - d / scalingFactor;
     })
     .attr("height", function (d) {
-      return d; // TODO: überlegen wie relative Höhe
+      return d / scalingFactor;
     })
     .attr("width", barWidth);
 
@@ -457,9 +450,8 @@ addUserForm.addEventListener("submit", (event) => {
                         });
                       }
 
-                      // clearPage();
-                      // createDiagram(roundData);
-                      console.log(playersData);
+                      clearPage();
+                      createDiagram(roundData);
                     }
                   });
                 }
@@ -475,34 +467,3 @@ addUserForm.addEventListener("submit", (event) => {
     alert(insertLongerName);
   }
 });
-
-/*
-
-playersData[0].rounds[1].roundTotal
-
-playersData: array
-  player: object
-    id: number
-    name: string
-    rounds: array
-      round: object
-        ​​​erzieltepunktezahl: number
-        ​​​​meldenzahl: number
-        ​​​​reizzahl: number
-        ​​​​roundTotal: number
-      round: object
-        ​​​erzieltepunktezahl: number
-        ​​​​meldenzahl: number
-        ​​​​reizzahl: number
-        ​​​​roundTotal: number
-  player: object
-    id: number
-    name: string
-    rounds: array
-      round: object
-        ​​​erzieltepunktezahl: number
-        ​​​​meldenzahl: number
-        ​​​​reizzahl: number
-        ​​​​roundTotal: number
-
-*/
