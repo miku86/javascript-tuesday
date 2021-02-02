@@ -170,9 +170,7 @@ function createList(playerNames, titleText, className) {
     listItem.textContent = playerNames[i] + ": ";
     const playerInput = createElement("input");
     playerInput.type = "text";
-
     playerInput.className = `${className}zahl ${className}-${playersData[i]["id"]}`;
-
     playerInput.value = randomNumber();
 
     customList.appendChild(listItem);
@@ -259,16 +257,15 @@ addUserForm.addEventListener("submit", (event) => {
       amountOfPlayers = amountOfPlayers + 1;
 
       if (amountOfPlayers === 3) {
-        // TODO: start new round here
+        // Block: create start button to make game start
         const startGameButton = createButton("Start Game", "start-game");
         app.appendChild(startGameButton);
-
         const myStartGameButton = findElement("#start-game");
 
         myStartGameButton.addEventListener("click", () => {
-          // REIZEN BEGINNT
           clearPage();
 
+          // Block: create reizen input to enter reizenzahl
           const myInput = createInputField(
             "Reizenzahl eingeben",
             "input-reizen",
@@ -276,19 +273,19 @@ addUserForm.addEventListener("submit", (event) => {
           );
           app.appendChild(myInput);
 
+          // Block: create dropdown to select player who won reizen
           const playerNameDropdown = createDropdown(playersData);
           app.appendChild(playerNameDropdown);
 
+          // Block: create button to submit reizzahl
           const addReiznummerButton = createButton(
             "Bestätigen",
             "submit-reizzahl"
           );
           app.appendChild(addReiznummerButton);
 
-          const inputReizzahl = findElement(".input-reizen");
-
+          // Block: Save id of selected player in dropdown of dropdown
           let selectedPlayerInDropdownId = playersData[0]["id"];
-
           const dropdown = findElement(".playerSelected");
           dropdown.addEventListener("change", (event) => {
             selectedPlayerInDropdownId = event.target.value;
@@ -296,9 +293,12 @@ addUserForm.addEventListener("submit", (event) => {
 
           const submitReizzahl = findElement("#submit-reizzahl");
           submitReizzahl.addEventListener("click", () => {
+            const inputReizzahl = findElement(".input-reizen");
+
             if (!inputReizzahl.value || isNaN(inputReizzahl.value)) {
               alert(insertReizzahl);
             } else {
+              // Block: find playername to create alert message
               let selectedPlayerName;
 
               for (i = 0; i < amountOfPlayers; i++) {
@@ -309,6 +309,7 @@ addUserForm.addEventListener("submit", (event) => {
 
               alert(confirmInput(selectedPlayerName, inputReizzahl.value));
 
+              // Block: use playernames to set reizzahls for each player
               for (let i = 0; i < playersData.length; i++) {
                 if (selectedPlayerName === playersData[i]["name"]) {
                   playersData[i]["rounds"].push({
@@ -324,6 +325,7 @@ addUserForm.addEventListener("submit", (event) => {
               // MELDEN BEGINNT
               clearPage();
 
+              // Block: create list for meldezahlen to display each player and an input
               const playerNames = playersData.map((player) => player.name);
               const myPlayerNamesList = createList(
                 playerNames,
@@ -332,6 +334,7 @@ addUserForm.addEventListener("submit", (event) => {
               );
               app.appendChild(myPlayerNamesList);
 
+              // Block: create button to submit meldezahlen
               const submitMeldenButton = createButton(
                 "Punkte melden",
                 "punkte-melden"
@@ -339,12 +342,10 @@ addUserForm.addEventListener("submit", (event) => {
               app.appendChild(submitMeldenButton);
 
               submitMeldenButton.addEventListener("click", () => {
-                const playerIds = playersData.map((player) => player.id);
-
+                // Block: find all meldezahlen
                 const allMeldezahlInputs = document.querySelectorAll(
                   ".meldenzahl"
                 );
-
                 const allMeldezahlValues = getInputValues(allMeldezahlInputs);
 
                 if (isInvalid(allMeldezahlValues)) {
@@ -352,6 +353,7 @@ addUserForm.addEventListener("submit", (event) => {
                 } else {
                   let entries = [];
 
+                  // Block: save name and meldezahl for each player
                   for (let i = 0; i < playerNames.length; i++) {
                     entries.push({
                       name: playerNames[i],
@@ -361,18 +363,21 @@ addUserForm.addEventListener("submit", (event) => {
 
                   alert(confirmInputs(entries));
 
+                  // Block: save correct meldezahl for each player
+                  const playerIds = playersData.map((player) => player.id);
                   for (let i = 0; i < amountOfPlayers; i++) {
+                    // find current player's meldezahl
                     const currentPlayerInput = findElement(
                       `.melden-${playerIds[i]}`
                     );
 
+                    // find their index in playersData
                     const index = playersData.findIndex(
                       (player) => player.id === playerIds[i]
                     );
 
-                    const currentRound =
-                      playersData[index]["rounds"].length - 1;
-
+                    // TODO: simplify
+                    // Save meldezahl for player
                     playersData[index]["rounds"][
                       playersData[index]["rounds"].length - 1
                     ]["meldenzahl"] = Number(currentPlayerInput.value);
@@ -473,6 +478,12 @@ addUserForm.addEventListener("submit", (event) => {
 
                       clearPage();
                       createDiagram(roundData);
+
+                      const startNewRoundButton = createButton(
+                        "Start New Round",
+                        "start-new-round"
+                      );
+                      app.appendChild(startNewRoundButton);
                     }
                   });
                 }
