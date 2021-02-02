@@ -60,7 +60,23 @@ function createDiagram(data) {
     .text(function (d) {
       return d.points;
     });
-  // TODO: besseres Diagramm, welches Höhe der Balken mit einbezieht
+
+  d3.select("svg")
+    .selectAll("svg")
+    .data(playersData)
+    .enter()
+    .append("text")
+    .attr("x", function (_, i) {
+      return i * containerBar + barMargin + barWidth / 2;
+    })
+    .attr("y", function (d, i) {
+      return svgHeight - d.points / scalingFactor / 2;
+    })
+    .style("fill", "orange")
+    .style("text-anchor", "middle")
+    .text(function (d) {
+      return d.name;
+    });
 }
 
 function randomName() {
@@ -243,6 +259,7 @@ addUserForm.addEventListener("submit", (event) => {
       amountOfPlayers = amountOfPlayers + 1;
 
       if (amountOfPlayers === 3) {
+        // TODO: start new round here
         const startGameButton = createButton("Start Game", "start-game");
         app.appendChild(startGameButton);
 
