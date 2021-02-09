@@ -13,6 +13,8 @@ function createDiagram(data) {
     .style("width", svgWidth + "px")
     .style("height", svgHeight + "px");
 
+  // nicht die playersData, die ursprüngliche daten enthalten
+  // => schlechter/doppelter name
   const playersData = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -170,6 +172,7 @@ function createList(playerNames, titleText, className) {
     listItem.textContent = playerNames[i] + ": ";
     const playerInput = createElement("input");
     playerInput.type = "text";
+    // TODO: wir lesen daten aus playersData
     playerInput.className = `${className}zahl ${className}-${playersData[i]["id"]}`;
     playerInput.value = randomNumber();
 
@@ -244,12 +247,15 @@ addUserForm.addEventListener("submit", (event) => {
   if (playerInputField.value.length > 2) {
     const player = createElement("p");
     player.textContent = playerInputField.value;
+
+    // TODO: ERLEDIGT
     const newPlayer = {
       id: amountOfPlayers + 1,
       name: playerInputField.value,
       rounds: [],
     };
     playersData.push(newPlayer);
+    /////////////////////////////
 
     if (amountOfPlayers < 4) {
       playersContainer.appendChild(player);
