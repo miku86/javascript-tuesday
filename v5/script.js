@@ -2,8 +2,6 @@ const model = {
   // it should have a place to store the players data
   playersData: [],
 
-  // Inhalte zu playersData hinzufügen
-  // new Player zu playersData hinzufügen
   createNewPlayer(newPlayerName) {
     const newPlayer = {
       id: this.playersData.length + 1,
@@ -19,6 +17,7 @@ const model = {
 const view = {
   displayNewPlayerView() {
     this.generateNewPlayerElements();
+    utils.setupFormSubmitHandler();
   },
 
   generateNewPlayerElements() {
@@ -38,6 +37,36 @@ const view = {
 
     const myButton = this.createButton("Add Player", "add-player");
     myForm.appendChild(myButton);
+  },
+
+  displayPlayersList() {
+    this.clearApp();
+    this.generateNewPlayerElements();
+    utils.setupFormSubmitHandler();
+    this.generatePlayersList();
+  },
+
+  clearApp() {
+    const app = document.querySelector(".app");
+    app.innerHTML = "";
+  },
+
+  generatePlayersList() {
+    // erstelle ungeordnete html liste
+    const playersList = document.createElement("ul");
+    playersList.className = "players-list";
+
+    const app = document.querySelector(".app");
+    app.appendChild(playersList);
+
+    // erstelle listenelemente für jeden existierenden spieler
+    for (const player of model.playersData) {
+      const playerItem = document.createElement("li");
+      playerItem.textContent = player.name;
+
+      const playersList = document.querySelector(".players-list");
+      playersList.appendChild(playerItem);
+    }
   },
 
   createInputField(inputPlaceholder, inputClassname, type) {
@@ -61,20 +90,23 @@ const view = {
 
 const controller = {
   createNewPlayer() {
-    // suche add player button
+    event.preventDefault();
+    const playerName = document.querySelector(".input-player-name");
+    model.createNewPlayer(playerName.value);
 
-    // lies spielername aus input feld aus
-
-    // speicher inhalte in model
-    model.createNewPlayer();
-
-    // zeige name an - view.???
+    // zeige name an
+    view.displayPlayersList();
 
     // leere input feld
   },
 };
 
 const utils = {
+  setupFormSubmitHandler() {
+    const addPlayerForm = document.querySelector(".form-add-player");
+    addPlayerForm.addEventListener("submit", controller.createNewPlayer);
+  },
+
   randomName() {
     const names = [
       "Adolf",
