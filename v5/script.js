@@ -52,14 +52,12 @@ const view = {
   },
 
   generatePlayersList() {
-    // erstelle ungeordnete html liste
     const playersList = document.createElement("ul");
     playersList.className = "players-list";
 
     const app = document.querySelector(".app");
     app.appendChild(playersList);
 
-    // erstelle listenelemente für jeden existierenden spieler
     for (const player of model.playersData) {
       const playerItem = document.createElement("li");
       playerItem.textContent = player.name;
@@ -93,11 +91,7 @@ const controller = {
     event.preventDefault();
     const playerName = document.querySelector(".input-player-name");
     model.createNewPlayer(playerName.value);
-
-    // zeige name an
     view.displayPlayersList();
-
-    // leere input feld
   },
 };
 
