@@ -11,7 +11,7 @@ const model = {
     this.playersData.push(newPlayer);
   },
 
-  // Inhalte von playersData ändern
+  createReizzahlen() {},
 };
 
 const view = {
@@ -79,6 +79,25 @@ const view = {
     app.appendChild(startGameButton);
   },
 
+  displayReizzahlElements() {
+    this.generateReizzahlElements();
+  },
+
+  generateReizzahlElements() {
+    const reizzahlInput = view.createInputField(
+      "Reizzahl eingeben",
+      "input-reizzahl",
+      "number"
+    );
+
+    const app = utils.findApp();
+    app.appendChild(reizzahlInput);
+
+    // füge dropdown für reizzahlgewinner hinzu
+    // füge button um zu submitten hinzu
+    // mache button klickbar
+  },
+
   createInputField(inputPlaceholder, inputClassname, type) {
     const playerInput = document.createElement("input");
     playerInput.type = "text";
@@ -108,7 +127,9 @@ const controller = {
   },
 
   startGame() {
-
+    view.clearApp();
+    view.displayReizzahlElements();
+    model.createReizzahlen();
   },
 };
 
