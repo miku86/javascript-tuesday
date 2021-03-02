@@ -106,12 +106,21 @@ const controller = {
     view.displayPlayersList();
     utils.checkIfDisplayStartGameButton();
   },
+
+  startGame() {
+
+  },
 };
 
 const utils = {
   setupFormSubmitHandler() {
     const addPlayerForm = document.querySelector(".form-add-player");
     addPlayerForm.addEventListener("submit", controller.createNewPlayer);
+  },
+
+  setupStartGameHandler() {
+    const startGameButton = document.querySelector("#start-game");
+    startGameButton.addEventListener("click", controller.startGame);
   },
 
   randomName() {
@@ -146,11 +155,9 @@ const utils = {
 
     if (amountOfPlayers >= MINIMUM_PLAYERS) {
       view.displayStartGameButton();
+      this.setupStartGameHandler();
     }
   },
 };
 
 view.displayNewPlayerView();
-
-// suche button
-// füge event listener hinzu um button klickbar zu machen
