@@ -21,9 +21,10 @@ const view = {
   },
 
   generateNewPlayerElements() {
-    const app = document.querySelector(".app");
     const customForm = document.createElement("form");
     customForm.className = "form-add-player";
+
+    const app = utils.findApp();
     app.appendChild(customForm);
 
     const myForm = document.querySelector(".form-add-player");
@@ -47,7 +48,7 @@ const view = {
   },
 
   clearApp() {
-    const app = document.querySelector(".app");
+    const app = utils.findApp();
     app.innerHTML = "";
   },
 
@@ -55,7 +56,7 @@ const view = {
     const playersList = document.createElement("ul");
     playersList.className = "players-list";
 
-    const app = document.querySelector(".app");
+    const app = utils.findApp();
     app.appendChild(playersList);
 
     for (const player of model.playersData) {
@@ -65,6 +66,17 @@ const view = {
       const playersList = document.querySelector(".players-list");
       playersList.appendChild(playerItem);
     }
+  },
+
+  displayStartGameButton() {
+    this.generateStartGameButton();
+  },
+
+  generateStartGameButton() {
+    const startGameButton = this.createButton("Start Game", "start-game");
+
+    const app = utils.findApp();
+    app.appendChild(startGameButton);
   },
 
   createInputField(inputPlaceholder, inputClassname, type) {
@@ -92,6 +104,7 @@ const controller = {
     const playerName = document.querySelector(".input-player-name");
     model.createNewPlayer(playerName.value);
     view.displayPlayersList();
+    utils.checkIfDisplayStartGameButton();
   },
 };
 
@@ -122,6 +135,22 @@ const utils = {
     const MAX = 500;
     return Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
   },
+
+  findApp() {
+    return document.querySelector(".app");
+  },
+
+  checkIfDisplayStartGameButton() {
+    const amountOfPlayers = model.playersData.length;
+    const MINIMUM_PLAYERS = 3;
+
+    if (amountOfPlayers >= MINIMUM_PLAYERS) {
+      view.displayStartGameButton();
+    }
+  },
 };
 
 view.displayNewPlayerView();
+
+// suche button
+// füge event listener hinzu um button klickbar zu machen
