@@ -258,20 +258,25 @@ addUserForm.addEventListener("submit", (event) => {
     /////////////////////////////
 
     if (amountOfPlayers < 4) {
+      // TODO: ERLEDIGT
       playersContainer.appendChild(player);
       playerInputField.value = randomName();
       amountOfPlayers = amountOfPlayers + 1;
 
+      // TODO: ERLEDIGT
+
       if (amountOfPlayers === 3) {
-        // Block: create start button to make game start
+        // TODO: ERLEDIGT
         const startGameButton = createButton("Start Game", "start-game");
         app.appendChild(startGameButton);
         const myStartGameButton = findElement("#start-game");
 
+        // TODO: ERLEDIGT
         myStartGameButton.addEventListener("click", () => {
           clearPage();
 
-          // Block: create reizen input to enter reizenzahl
+          // TODO: ERLEDIGT
+
           const myInput = createInputField(
             "Reizenzahl eingeben",
             "input-reizen",
@@ -279,7 +284,6 @@ addUserForm.addEventListener("submit", (event) => {
           );
           app.appendChild(myInput);
 
-          // Block: create dropdown to select player who won reizen
           const playerNameDropdown = createDropdown(playersData);
           app.appendChild(playerNameDropdown);
 
