@@ -14,4 +14,4 @@ function mutation(arr) {
   return noneIsMissing;
 }
 
-console.log(mutation(["hello", "Hey"]));
+mutation(["hello", "Hey"]);
