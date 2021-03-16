@@ -81,6 +81,7 @@ const view = {
 
   displayReizzahlElements() {
     this.generateReizzahlElements();
+    utils.setupSubmitReizzahlHandler();
   },
 
   generateReizzahlElements() {
@@ -93,9 +94,28 @@ const view = {
     const app = utils.findApp();
     app.appendChild(reizzahlInput);
 
-    // füge dropdown für reizzahlgewinner hinzu
-    // füge button um zu submitten hinzu
-    // mache button klickbar
+    const playersDropdown = this.createDropdown();
+    app.appendChild(playersDropdown);
+
+    const submitReizzahlButton = this.createButton(
+      "Reizzahl bestätigen",
+      "reizzahl-submit"
+    );
+    app.appendChild(submitReizzahlButton);
+  },
+
+  // TODO: in utils packen?
+  createDropdown() {
+    const playersDropdown = document.createElement("select");
+
+    for (let player of model.playersData) {
+      const playerOption = document.createElement("option");
+      playerOption.textContent = player.name;
+      playerOption.value = player.id;
+      playersDropdown.appendChild(playerOption);
+    }
+
+    return playersDropdown;
   },
 
   createInputField(inputPlaceholder, inputClassname, type) {
@@ -131,6 +151,10 @@ const controller = {
     view.displayReizzahlElements();
     model.createReizzahlen();
   },
+
+  saveReizzahl() {
+    console.log("lauft");
+  },
 };
 
 const utils = {
@@ -142,6 +166,11 @@ const utils = {
   setupStartGameHandler() {
     const startGameButton = document.querySelector("#start-game");
     startGameButton.addEventListener("click", controller.startGame);
+  },
+
+  setupSubmitReizzahlHandler() {
+    const reizzahlButton = document.querySelector("#reizzahl-submit");
+    reizzahlButton.addEventListener("click", controller.saveReizzahl);
   },
 
   randomName() {
