@@ -1,5 +1,4 @@
 const model = {
-  // it should have a place to store the players data
   playersData: [],
   reizzahlWinnerId: 1,
 
@@ -13,7 +12,7 @@ const model = {
   },
 
   updateReizzahlWinnerId(winnerId) {
-    this.reizzahlWinnerId = winnerId;
+    this.reizzahlWinnerId = Number(winnerId);
   },
 
   createReizzahlen() {},
@@ -160,9 +159,23 @@ const controller = {
   },
 
   saveReizzahl() {
-    // winner (über id) bekommt reizzahl punkte
-    // loser bekommen 0 punkte
-    console.log(model.reizzahlWinnerId);
+    const newPlayers = [];
+
+    for (const player of model.playersData) {
+      if (player.id === model.reizzahlWinnerId) {
+        player.rounds.push({
+          reizahl: 123, // save correct reizzahl
+        });
+      } else {
+        player.rounds.push({
+          reizahl: 0,
+        });
+      }
+
+      newPlayers.push(player);
+    }
+
+    model.playersData = newPlayers;
   },
 };
 
