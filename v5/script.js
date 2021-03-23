@@ -1,6 +1,7 @@
 const model = {
   // it should have a place to store the players data
   playersData: [],
+  reizzahlWinnerId: 1,
 
   createNewPlayer(newPlayerName) {
     const newPlayer = {
@@ -9,6 +10,10 @@ const model = {
       rounds: [],
     };
     this.playersData.push(newPlayer);
+  },
+
+  updateReizzahlWinnerId(winnerId) {
+    this.reizzahlWinnerId = winnerId;
   },
 
   createReizzahlen() {},
@@ -81,6 +86,7 @@ const view = {
 
   displayReizzahlElements() {
     this.generateReizzahlElements();
+    utils.setupDropdownChangeHandler();
     utils.setupSubmitReizzahlHandler();
   },
 
@@ -107,6 +113,7 @@ const view = {
   // TODO: in utils packen?
   createDropdown() {
     const playersDropdown = document.createElement("select");
+    playersDropdown.className = "reizzahl-players-dropdown";
 
     for (let player of model.playersData) {
       const playerOption = document.createElement("option");
@@ -153,7 +160,9 @@ const controller = {
   },
 
   saveReizzahl() {
-    console.log("lauft");
+    // winner (über id) bekommt reizzahl punkte
+    // loser bekommen 0 punkte
+    console.log(model.reizzahlWinnerId);
   },
 };
 
@@ -171,6 +180,13 @@ const utils = {
   setupSubmitReizzahlHandler() {
     const reizzahlButton = document.querySelector("#reizzahl-submit");
     reizzahlButton.addEventListener("click", controller.saveReizzahl);
+  },
+
+  setupDropdownChangeHandler() {
+    const dropdown = document.querySelector(".reizzahl-players-dropdown");
+    dropdown.addEventListener("change", () => {
+      model.updateReizzahlWinnerId(event.target.value);
+    });
   },
 
   randomName() {
