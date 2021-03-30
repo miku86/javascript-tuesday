@@ -4,23 +4,54 @@ const model = {
 
   createNewPlayer(newPlayerName) {
     const newPlayer = {
-      id: this.playersData.length + 1,
+      id: model.playersData.length + 1,
       name: newPlayerName,
       rounds: [],
     };
-    this.playersData.push(newPlayer);
+    model.playersData.push(newPlayer);
   },
 
   updateReizzahlWinnerId(winnerId) {
-    this.reizzahlWinnerId = Number(winnerId);
+    model.reizzahlWinnerId = Number(winnerId);
   },
 
-  createReizzahlen() {},
+  saveReizzahl() {
+    const newPlayers = [];
+
+    for (const player of model.playersData) {
+      if (player.id === model.reizzahlWinnerId) {
+        player.rounds.push({
+          reizzahl: 123, // save correct reizzahl
+        });
+      } else {
+        player.rounds.push({
+          reizahl: 0,
+        });
+      }
+
+      newPlayers.push(player);
+    }
+
+    model.playersData = newPlayers;
+  },
+
+  saveMeldezahl(inputs) {
+    // gehe durch jedes inputfeld
+    for (const input of inputs) {
+      const correctPlayer = Object.fromEntries(
+        Object.entries(model.playersData).filter(
+          ([key, value]) => value.id === Number(input.id)
+        )
+      );
+      // finde wert von input.value
+      // speichere wert beim spieler mit der gleichen id
+    }
+  },
 };
 
 const view = {
   displayNewPlayerView() {
-    this.generateNewPlayerElements();
+    view.generateNewPlayerElements();
     utils.setupFormSubmitHandler();
   },
 
@@ -33,22 +64,22 @@ const view = {
 
     const myForm = document.querySelector(".form-add-player");
 
-    const myInputField = this.createInputField(
+    const myInputField = utils.createInputField(
       "New Player Name",
       "input-player-name",
       "name" // for dummy data
     );
     myForm.appendChild(myInputField);
 
-    const myButton = this.createButton("Add Player", "add-player");
+    const myButton = utils.createButton("Add Player", "add-player");
     myForm.appendChild(myButton);
   },
 
   displayPlayersList() {
-    this.clearApp();
-    this.generateNewPlayerElements();
+    view.clearApp();
+    view.generateNewPlayerElements();
     utils.setupFormSubmitHandler();
-    this.generatePlayersList();
+    view.generatePlayersList();
   },
 
   clearApp() {
@@ -73,24 +104,24 @@ const view = {
   },
 
   displayStartGameButton() {
-    this.generateStartGameButton();
+    view.generateStartGameButton();
   },
 
   generateStartGameButton() {
-    const startGameButton = this.createButton("Start Game", "start-game");
+    const startGameButton = utils.createButton("Start Game", "start-game");
 
     const app = utils.findApp();
     app.appendChild(startGameButton);
   },
 
   displayReizzahlElements() {
-    this.generateReizzahlElements();
+    view.generateReizzahlElements();
     utils.setupDropdownChangeHandler();
     utils.setupSubmitReizzahlHandler();
   },
 
   generateReizzahlElements() {
-    const reizzahlInput = view.createInputField(
+    const reizzahlInput = utils.createInputField(
       "Reizzahl eingeben",
       "input-reizzahl",
       "number"
@@ -99,47 +130,46 @@ const view = {
     const app = utils.findApp();
     app.appendChild(reizzahlInput);
 
-    const playersDropdown = this.createDropdown();
+    const playersDropdown = utils.createDropdown();
     app.appendChild(playersDropdown);
 
-    const submitReizzahlButton = this.createButton(
+    const submitReizzahlButton = utils.createButton(
       "Reizzahl bestätigen",
       "reizzahl-submit"
     );
     app.appendChild(submitReizzahlButton);
   },
 
-  // TODO: in utils packen?
-  createDropdown() {
-    const playersDropdown = document.createElement("select");
-    playersDropdown.className = "reizzahl-players-dropdown";
+  displayMeldezahlElements() {
+    view.generateMeldezahlElements();
+    utils.setupSubmitMeldezahlHandler();
+  },
 
-    for (let player of model.playersData) {
-      const playerOption = document.createElement("option");
-      playerOption.textContent = player.name;
-      playerOption.value = player.id;
-      playersDropdown.appendChild(playerOption);
+  generateMeldezahlElements() {
+    const heading = document.createElement("h1");
+    heading.textContent = "Melden";
+
+    const app = utils.findApp();
+    app.appendChild(heading);
+
+    for (const player of model.playersData) {
+      const label = document.createElement("label");
+      label.textContent = player.name;
+      app.appendChild(label);
+
+      const input = utils.createInputField(
+        "Meldezahl",
+        "input-meldezahl",
+        "number"
+      );
+      input.id = player.id;
+
+      label.appendChild(input);
     }
 
-    return playersDropdown;
-  },
+    const submitButton = utils.createButton("Submit", "meldezahl-submit");
 
-  createInputField(inputPlaceholder, inputClassname, type) {
-    const playerInput = document.createElement("input");
-    playerInput.type = "text";
-    playerInput.className = inputClassname;
-    playerInput.placeholder = inputPlaceholder;
-    playerInput.autofocus = true;
-    playerInput.value =
-      type === "name" ? utils.randomName() : utils.randomNumber();
-    return playerInput;
-  },
-
-  createButton(buttonText, buttonId) {
-    const customButton = document.createElement("button");
-    customButton.textContent = buttonText;
-    customButton.id = buttonId;
-    return customButton;
+    app.appendChild(submitButton);
   },
 };
 
@@ -155,27 +185,17 @@ const controller = {
   startGame() {
     view.clearApp();
     view.displayReizzahlElements();
-    model.createReizzahlen();
   },
 
   saveReizzahl() {
-    const newPlayers = [];
+    model.saveReizzahl();
+    view.clearApp();
+    view.displayMeldezahlElements();
+  },
 
-    for (const player of model.playersData) {
-      if (player.id === model.reizzahlWinnerId) {
-        player.rounds.push({
-          reizahl: 123, // save correct reizzahl
-        });
-      } else {
-        player.rounds.push({
-          reizahl: 0,
-        });
-      }
-
-      newPlayers.push(player);
-    }
-
-    model.playersData = newPlayers;
+  saveMeldezahl() {
+    const inputs = utils.findMeldezahlInputs();
+    model.saveMeldezahl(inputs);
   },
 };
 
@@ -193,6 +213,11 @@ const utils = {
   setupSubmitReizzahlHandler() {
     const reizzahlButton = document.querySelector("#reizzahl-submit");
     reizzahlButton.addEventListener("click", controller.saveReizzahl);
+  },
+
+  setupSubmitMeldezahlHandler() {
+    const meldezahlButton = document.querySelector("#meldezahl-submit");
+    meldezahlButton.addEventListener("click", controller.saveMeldezahl);
   },
 
   setupDropdownChangeHandler() {
@@ -228,14 +253,50 @@ const utils = {
     return document.querySelector(".app");
   },
 
+  findMeldezahlInputs() {
+    return document.querySelectorAll(".input-meldezahl");
+  },
+
   checkIfDisplayStartGameButton() {
     const amountOfPlayers = model.playersData.length;
     const MINIMUM_PLAYERS = 3;
 
     if (amountOfPlayers >= MINIMUM_PLAYERS) {
       view.displayStartGameButton();
-      this.setupStartGameHandler();
+      utils.setupStartGameHandler();
     }
+  },
+
+  createDropdown() {
+    const playersDropdown = document.createElement("select");
+    playersDropdown.className = "reizzahl-players-dropdown";
+
+    for (let player of model.playersData) {
+      const playerOption = document.createElement("option");
+      playerOption.textContent = player.name;
+      playerOption.value = player.id;
+      playersDropdown.appendChild(playerOption);
+    }
+
+    return playersDropdown;
+  },
+
+  createInputField(inputPlaceholder, inputClassname, dummyType) {
+    const playerInput = document.createElement("input");
+    playerInput.type = "text";
+    playerInput.className = inputClassname;
+    playerInput.placeholder = inputPlaceholder;
+    playerInput.autofocus = true;
+    playerInput.value =
+      dummyType === "name" ? utils.randomName() : utils.randomNumber();
+    return playerInput;
+  },
+
+  createButton(buttonText, buttonId) {
+    const customButton = document.createElement("button");
+    customButton.textContent = buttonText;
+    customButton.id = buttonId;
+    return customButton;
   },
 };
 
