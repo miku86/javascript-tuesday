@@ -36,16 +36,16 @@ const model = {
   },
 
   saveMeldezahl(inputs) {
-    // gehe durch jedes inputfeld
-    for (const input of inputs) {
-      const correctPlayer = Object.fromEntries(
-        Object.entries(model.playersData).filter(
-          ([key, value]) => value.id === Number(input.id)
-        )
-      );
-      // finde wert von input.value
-      // speichere wert beim spieler mit der gleichen id
-    }
+    // id: 1, value: 134
+    // id: 2, value: 123
+
+    // finde in playersData den spieler mit der aktuelle id
+    // speichere bei diesem gefundenen spieler den value in der aktuellen runde ab
+    // 1: []
+    // TODO
+    model.playersData.reduce((prev, curr) => {
+      // magic
+    }, []);
   },
 };
 
@@ -195,7 +195,9 @@ const controller = {
 
   saveMeldezahl() {
     const inputs = utils.findMeldezahlInputs();
+    console.log(model.playersData);
     model.saveMeldezahl(inputs);
+    console.log(model.playersData);
   },
 };
 
