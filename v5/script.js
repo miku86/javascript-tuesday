@@ -36,15 +36,19 @@ const model = {
   },
 
   saveMeldezahl(inputs) {
-    // id: 1, value: 134
-    // id: 2, value: 123
-
-    // finde in playersData den spieler mit der aktuelle id
-    // speichere bei diesem gefundenen spieler den value in der aktuellen runde ab
-    // 1: []
-    // TODO
+    const inputsArray = [...inputs];
     model.playersData.reduce((prev, curr) => {
-      // magic
+
+      const currentPlayerInput = inputsArray.filter(
+        (input) => Number(input.id) === curr.id
+      );
+
+      const currentRoundIndex = curr.rounds.length - 1;
+      curr.rounds[currentRoundIndex]["meldezahl"] = Number(
+        currentPlayerInput[0].value
+      );
+
+      return [...prev, curr];
     }, []);
   },
 };
