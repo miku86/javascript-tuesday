@@ -144,45 +144,72 @@ const view = {
   },
 
   displayMeldezahlElements() {
-    view.generateMeldezahlElements();
+    view.generateInputElements("Meldezahl", "meldezahl", "meldezahl");
     utils.setupSubmitMeldezahlHandler();
   },
 
-  generateMeldezahlElements() {
-    const heading = document.createElement("h1");
-    heading.textContent = "Melden";
+  // generateMeldezahlElements() {
+  //   const heading = document.createElement("h1");
+  //   heading.textContent = "Melden";
 
-    const app = utils.findApp();
-    app.appendChild(heading);
+  //   const app = utils.findApp();
+  //   app.appendChild(heading);
 
-    for (const player of model.playersData) {
-      const label = document.createElement("label");
-      label.textContent = player.name;
-      app.appendChild(label);
+  //   for (const player of model.playersData) {
+  //     const label = document.createElement("label");
+  //     label.textContent = player.name;
+  //     app.appendChild(label);
 
-      const input = utils.createInputField(
-        "Meldezahl",
-        "input-meldezahl",
-        "number"
-      );
-      input.id = player.id;
+  //     const input = utils.createInputField(
+  //       "Meldezahl",
+  //       "input-meldezahl",
+  //       "number"
+  //     );
+  //     input.id = player.id;
 
-      label.appendChild(input);
-    }
+  //     label.appendChild(input);
+  //   }
 
-    const submitButton = utils.createButton("Submit", "meldezahl-submit");
+  //   const submitButton = utils.createButton("Submit", "meldezahl-submit");
 
-    app.appendChild(submitButton);
-  },
+  //   app.appendChild(submitButton);
+  // },
 
   displayErzieltePunkteElements() {
-    view.generateErzieltePunkteElements();
+    view.generateInputElements("Erzielte Punkte", "erzieltepunkte", "erzieltepunkte")
     utils.setupSubmitErzieltePunkteHandler();
   },
 
-  generateErzieltePunkteElements() {
+  // generateErzieltePunkteElements() {
+  //   const heading = document.createElement("h1");
+  //   heading.textContent = "Erzielte Punkte";
+
+  //   const app = utils.findApp();
+  //   app.appendChild(heading);
+
+  //   for (const player of model.playersData) {
+  //     const label = document.createElement("label");
+  //     label.textContent = player.name;
+  //     app.appendChild(label);
+
+  //     const input = utils.createInputField(
+  //       "Erzielte Punkte",
+  //       "input-erzieltepunkte",
+  //       "number"
+  //     );
+  //     input.id = player.id;
+
+  //     label.appendChild(input);
+  //   }
+
+  //   const submitButton = utils.createButton("Submit", "erzieltepunkte-submit");
+
+  //   app.appendChild(submitButton);
+  // },
+
+  generateInputElements(headingText, inputClass, buttonId) {
     const heading = document.createElement("h1");
-    heading.textContent = "Erzielte Punkte";
+    heading.textContent = headingText;
 
     const app = utils.findApp();
     app.appendChild(heading);
@@ -193,8 +220,10 @@ const view = {
       app.appendChild(label);
 
       const input = utils.createInputField(
-        "Erzielte Punkte",
-        "input-erzieltepunkte",
+        // Placeholder statisch machen
+        "Punktzahl eingeben",
+        `input-${inputClass}`,
+        // Input type/value statisch machen
         "number"
       );
       input.id = player.id;
@@ -202,7 +231,7 @@ const view = {
       label.appendChild(input);
     }
 
-    const submitButton = utils.createButton("Submit", "erzieltepunkte-submit");
+    const submitButton = utils.createButton("Submit", `${buttonId}-submit`);
 
     app.appendChild(submitButton);
   },
