@@ -148,64 +148,14 @@ const view = {
     utils.setupSubmitMeldezahlHandler();
   },
 
-  // generateMeldezahlElements() {
-  //   const heading = document.createElement("h1");
-  //   heading.textContent = "Melden";
-
-  //   const app = utils.findApp();
-  //   app.appendChild(heading);
-
-  //   for (const player of model.playersData) {
-  //     const label = document.createElement("label");
-  //     label.textContent = player.name;
-  //     app.appendChild(label);
-
-  //     const input = utils.createInputField(
-  //       "Meldezahl",
-  //       "input-meldezahl",
-  //       "number"
-  //     );
-  //     input.id = player.id;
-
-  //     label.appendChild(input);
-  //   }
-
-  //   const submitButton = utils.createButton("Submit", "meldezahl-submit");
-
-  //   app.appendChild(submitButton);
-  // },
-
   displayErzieltePunkteElements() {
-    view.generateInputElements("Erzielte Punkte", "erzieltepunkte", "erzieltepunkte")
+    view.generateInputElements(
+      "Erzielte Punkte",
+      "erzieltepunkte",
+      "erzieltepunkte"
+    );
     utils.setupSubmitErzieltePunkteHandler();
   },
-
-  // generateErzieltePunkteElements() {
-  //   const heading = document.createElement("h1");
-  //   heading.textContent = "Erzielte Punkte";
-
-  //   const app = utils.findApp();
-  //   app.appendChild(heading);
-
-  //   for (const player of model.playersData) {
-  //     const label = document.createElement("label");
-  //     label.textContent = player.name;
-  //     app.appendChild(label);
-
-  //     const input = utils.createInputField(
-  //       "Erzielte Punkte",
-  //       "input-erzieltepunkte",
-  //       "number"
-  //     );
-  //     input.id = player.id;
-
-  //     label.appendChild(input);
-  //   }
-
-  //   const submitButton = utils.createButton("Submit", "erzieltepunkte-submit");
-
-  //   app.appendChild(submitButton);
-  // },
 
   generateInputElements(headingText, inputClass, buttonId) {
     const heading = document.createElement("h1");
@@ -220,10 +170,8 @@ const view = {
       app.appendChild(label);
 
       const input = utils.createInputField(
-        // Placeholder statisch machen
         "Punktzahl eingeben",
         `input-${inputClass}`,
-        // Input type/value statisch machen
         "number"
       );
       input.id = player.id;
