@@ -38,7 +38,6 @@ const model = {
   saveMeldezahl(inputs) {
     const inputsArray = [...inputs];
     model.playersData.reduce((prev, curr) => {
-
       const currentPlayerInput = inputsArray.filter(
         (input) => Number(input.id) === curr.id
       );
@@ -175,6 +174,38 @@ const view = {
 
     app.appendChild(submitButton);
   },
+
+  displayErzieltePunkteElements() {
+    view.generateErzieltePunkteElements();
+    utils.setupSubmitErzieltePunkteHandler();
+  },
+
+  generateErzieltePunkteElements() {
+    const heading = document.createElement("h1");
+    heading.textContent = "Erzielte Punkte";
+
+    const app = utils.findApp();
+    app.appendChild(heading);
+
+    for (const player of model.playersData) {
+      const label = document.createElement("label");
+      label.textContent = player.name;
+      app.appendChild(label);
+
+      const input = utils.createInputField(
+        "Erzielte Punkte",
+        "input-erzieltepunkte",
+        "number"
+      );
+      input.id = player.id;
+
+      label.appendChild(input);
+    }
+
+    const submitButton = utils.createButton("Submit", "erzieltepunkte-submit");
+
+    app.appendChild(submitButton);
+  },
 };
 
 const controller = {
@@ -199,9 +230,9 @@ const controller = {
 
   saveMeldezahl() {
     const inputs = utils.findMeldezahlInputs();
-    console.log(model.playersData);
     model.saveMeldezahl(inputs);
-    console.log(model.playersData);
+    view.clearApp();
+    view.displayErzieltePunkteElements();
   },
 };
 
@@ -224,6 +255,13 @@ const utils = {
   setupSubmitMeldezahlHandler() {
     const meldezahlButton = document.querySelector("#meldezahl-submit");
     meldezahlButton.addEventListener("click", controller.saveMeldezahl);
+  },
+
+  setupSubmitErzieltePunkteHandler() {
+    const erzieltepunkteButton = document.querySelector(
+      "#erzieltepunkte-submit"
+    );
+    erzieltepunkteButton.addEventListener("click", () => {});
   },
 
   setupDropdownChangeHandler() {
