@@ -211,6 +211,10 @@ const controller = {
     view.clearApp();
     view.displayErzieltePunkteElements();
   },
+
+  saveErzieltepunkte() {
+    console.log(model.playersData);
+  },
 };
 
 const utils = {
@@ -238,7 +242,10 @@ const utils = {
     const erzieltepunkteButton = document.querySelector(
       "#erzieltepunkte-submit"
     );
-    erzieltepunkteButton.addEventListener("click", () => {});
+    erzieltepunkteButton.addEventListener(
+      "click",
+      controller.saveErzieltepunkte
+    );
   },
 
   setupDropdownChangeHandler() {
