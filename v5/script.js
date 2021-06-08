@@ -221,16 +221,16 @@ const controller = {
   },
 
   saveMeldezahl() {
-    const inputs = utils.findMeldezahlInputs();
+    const inputs = utils.findInputs("input-meldezahl");
     model.saveMeldezahl(inputs);
     view.clearApp();
     view.displayErzieltePunkteElements();
   },
 
   saveErzieltepunkte() {
-    const inputs = utils.findErzieltepunkteInputs();
+    const inputs = utils.findInputs("input-erzieltepunkte");
     model.saveErzieltepunkte(inputs);
-    view.clearApp()
+    view.clearApp();
     // zeige nächste seite
   },
 };
@@ -299,12 +299,8 @@ const utils = {
     return document.querySelector(".app");
   },
 
-  findMeldezahlInputs() {
-    return document.querySelectorAll(".input-meldezahl");
-  },
-
-  findErzieltepunkteInputs() {
-    return document.querySelectorAll(".input-erzieltepunkte");
+  findInputs(className) {
+    return document.querySelectorAll(`.${className}`);
   },
 
   checkIfDisplayStartGameButton() {
