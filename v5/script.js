@@ -25,7 +25,7 @@ const model = {
         });
       } else {
         player.rounds.push({
-          reizahl: 0,
+          reizzahl: 0,
         });
       }
 
@@ -44,6 +44,22 @@ const model = {
 
       const currentRoundIndex = curr.rounds.length - 1;
       curr.rounds[currentRoundIndex]["meldezahl"] = Number(
+        currentPlayerInput[0].value
+      );
+
+      return [...prev, curr];
+    }, []);
+  },
+
+  saveErzieltepunkte(inputs) {
+    const inputsArray = [...inputs];
+    model.playersData.reduce((prev, curr) => {
+      const currentPlayerInput = inputsArray.filter(
+        (input) => Number(input.id) === curr.id
+      );
+
+      const currentRoundIndex = curr.rounds.length - 1;
+      curr.rounds[currentRoundIndex]["erzieltePunkte"] = Number(
         currentPlayerInput[0].value
       );
 
@@ -158,10 +174,10 @@ const view = {
   },
 
   generateInputElements(headingText, inputClass, buttonId) {
+    const app = utils.findApp();
+
     const heading = document.createElement("h1");
     heading.textContent = headingText;
-
-    const app = utils.findApp();
     app.appendChild(heading);
 
     for (const player of model.playersData) {
@@ -180,7 +196,6 @@ const view = {
     }
 
     const submitButton = utils.createButton("Submit", `${buttonId}-submit`);
-
     app.appendChild(submitButton);
   },
 };
@@ -213,7 +228,10 @@ const controller = {
   },
 
   saveErzieltepunkte() {
-    console.log(model.playersData);
+    const inputs = utils.findErzieltepunkteInputs();
+    model.saveErzieltepunkte(inputs);
+    view.clearApp()
+    // zeige nächste seite
   },
 };
 
@@ -283,6 +301,10 @@ const utils = {
 
   findMeldezahlInputs() {
     return document.querySelectorAll(".input-meldezahl");
+  },
+
+  findErzieltepunkteInputs() {
+    return document.querySelectorAll(".input-erzieltepunkte");
   },
 
   checkIfDisplayStartGameButton() {
