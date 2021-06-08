@@ -35,7 +35,7 @@ const model = {
     model.playersData = newPlayers;
   },
 
-  saveMeldezahl(inputs) {
+  savePunkte(inputs, key) {
     const inputsArray = [...inputs];
     model.playersData.reduce((prev, curr) => {
       const currentPlayerInput = inputsArray.filter(
@@ -43,25 +43,7 @@ const model = {
       );
 
       const currentRoundIndex = curr.rounds.length - 1;
-      curr.rounds[currentRoundIndex]["meldezahl"] = Number(
-        currentPlayerInput[0].value
-      );
-
-      return [...prev, curr];
-    }, []);
-  },
-
-  saveErzieltepunkte(inputs) {
-    const inputsArray = [...inputs];
-    model.playersData.reduce((prev, curr) => {
-      const currentPlayerInput = inputsArray.filter(
-        (input) => Number(input.id) === curr.id
-      );
-
-      const currentRoundIndex = curr.rounds.length - 1;
-      curr.rounds[currentRoundIndex]["erzieltePunkte"] = Number(
-        currentPlayerInput[0].value
-      );
+      curr.rounds[currentRoundIndex][key] = Number(currentPlayerInput[0].value);
 
       return [...prev, curr];
     }, []);
@@ -222,14 +204,14 @@ const controller = {
 
   saveMeldezahl() {
     const inputs = utils.findInputs("input-meldezahl");
-    model.saveMeldezahl(inputs);
+    model.savePunkte(inputs, "meldezahl");
     view.clearApp();
     view.displayErzieltePunkteElements();
   },
 
   saveErzieltepunkte() {
     const inputs = utils.findInputs("input-erzieltepunkte");
-    model.saveErzieltepunkte(inputs);
+    model.savePunkte(inputs, "erzieltePunkte");
     view.clearApp();
     // zeige nächste seite
   },
