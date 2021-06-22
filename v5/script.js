@@ -155,6 +155,15 @@ const view = {
     utils.setupSubmitErzieltePunkteHandler();
   },
 
+  displayCurrentStanding() {
+    // berechne für jede runde: spielers punkte (punkte on-demand)
+    // berechne gesamtstand: spielers punkte
+    view.generateTable();
+
+    // button, um nächste runde zu starten
+
+  },
+
   generateInputElements(headingText, inputClass, buttonId) {
     const app = utils.findApp();
 
@@ -180,6 +189,12 @@ const view = {
     const submitButton = utils.createButton("Submit", `${buttonId}-submit`);
     app.appendChild(submitButton);
   },
+
+  generateTable(){
+    const app = utils.findApp();
+    const table = utils.createTable();
+    app.appendChild(table)
+  }
 };
 
 const controller = {
@@ -213,7 +228,7 @@ const controller = {
     const inputs = utils.findInputs("input-erzieltepunkte");
     model.savePunkte(inputs, "erzieltePunkte");
     view.clearApp();
-    // zeige nächste seite
+    view.displayCurrentStanding();
   },
 };
 
@@ -326,6 +341,43 @@ const utils = {
     customButton.id = buttonId;
     return customButton;
   },
+
+  createTable(){
+    // hier müssen die echten spielernamen stehen
+    const thTexts= ["Runde", "Max", "Peter", "Hans", "Hinweis"];
+
+    const table = document.createElement("table");
+
+    const thead = document.createElement("thead");
+    const theadTr = utils.createTr("th", thTexts);
+
+    thead.appendChild(theadTr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody")
+    table.appendChild(tbody)
+
+    // erstelle <tr>: n runden, 1 sum
+    //const tr = document.createElement("tr")
+
+    // erstelle <td>: 1 für runden, n spieler, 1 hinweise
+
+    // ziel: return neuen table mit inhalten
+    return table;
+  },
+
+  createTr(elementInTr, trContent){
+    // elementInTr: entweder th oder td
+    const tr = document.createElement("tr")
+
+    for(text of trContent){
+      const customElement = document.createElement(elementInTr)
+      customElement.textContent = text
+      tr.appendChild(customElement)
+    }
+
+    return tr;
+  }
 };
 
 view.displayNewPlayerView();
