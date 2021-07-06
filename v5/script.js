@@ -161,7 +161,6 @@ const view = {
     view.generateTable();
 
     // button, um nächste runde zu starten
-
   },
 
   generateInputElements(headingText, inputClass, buttonId) {
@@ -190,11 +189,11 @@ const view = {
     app.appendChild(submitButton);
   },
 
-  generateTable(){
+  generateTable() {
     const app = utils.findApp();
     const table = utils.createTable();
-    app.appendChild(table)
-  }
+    app.appendChild(table);
+  },
 };
 
 const controller = {
@@ -342,9 +341,9 @@ const utils = {
     return customButton;
   },
 
-  createTable(){
-    // hier müssen die echten spielernamen stehen
-    const thTexts= ["Runde", "Max", "Peter", "Hans", "Hinweis"];
+  createTable() {
+    // TODO: hier müssen die echten spielernamen stehen
+    const thTexts = ["Runde", "Max", "Peter", "Hans"];
 
     const table = document.createElement("table");
 
@@ -354,30 +353,46 @@ const utils = {
     thead.appendChild(theadTr);
     table.appendChild(thead);
 
-    const tbody = document.createElement("tbody")
-    table.appendChild(tbody)
+    const tbody = document.createElement("tbody");
 
-    // erstelle <tr>: n runden, 1 sum
-    //const tr = document.createElement("tr")
+    // TODO: for loop für anzahl von runden
+    const roundIndex = 0;
+    const rounds = [];
+    const round = [
+      "R" + (roundIndex + 1),
+      model.playersData[0]["rounds"][roundIndex]["erzieltePunkte"] +
+        model.playersData[0]["rounds"][roundIndex]["meldezahl"],
+      model.playersData[1]["rounds"][roundIndex]["erzieltePunkte"] +
+        model.playersData[1]["rounds"][roundIndex]["meldezahl"],
+      model.playersData[2]["rounds"][roundIndex]["erzieltePunkte"] +
+        model.playersData[2]["rounds"][roundIndex]["meldezahl"],
+    ];
 
-    // erstelle <td>: 1 für runden, n spieler, 1 hinweise
+    rounds.push(round);
+    // TODO: roundIndex um 1 erhöhen
 
-    // ziel: return neuen table mit inhalten
+    for (const round of rounds) {
+      const tr = utils.createTr("td", round);
+      tbody.appendChild(tr);
+    }
+
+    table.appendChild(tbody);
+
     return table;
   },
 
-  createTr(elementInTr, trContent){
+  createTr(elementInTr, trContent) {
     // elementInTr: entweder th oder td
-    const tr = document.createElement("tr")
+    const tr = document.createElement("tr");
 
-    for(text of trContent){
-      const customElement = document.createElement(elementInTr)
-      customElement.textContent = text
-      tr.appendChild(customElement)
+    for (text of trContent) {
+      const customElement = document.createElement(elementInTr);
+      customElement.textContent = text;
+      tr.appendChild(customElement);
     }
 
     return tr;
-  }
+  },
 };
 
 view.displayNewPlayerView();
