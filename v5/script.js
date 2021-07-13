@@ -342,8 +342,11 @@ const utils = {
   },
 
   createTable() {
-    // TODO: hier müssen die echten spielernamen stehen
-    const thTexts = ["Runde", "Max", "Peter", "Hans"];
+    const thTexts = ["Runde"];
+
+    for (const player of model.playersData) {
+      thTexts.push(player.name);
+    }
 
     const table = document.createElement("table");
 
@@ -375,6 +378,8 @@ const utils = {
       const tr = utils.createTr("td", round);
       tbody.appendChild(tr);
     }
+
+    // TODO: eine reihe für summe der spielerpunkte
 
     table.appendChild(tbody);
 
