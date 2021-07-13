@@ -361,15 +361,14 @@ const utils = {
     // TODO: for loop für anzahl von runden
     const roundIndex = 0;
     const rounds = [];
-    const round = [
-      "R" + (roundIndex + 1),
-      model.playersData[0]["rounds"][roundIndex]["erzieltePunkte"] +
-        model.playersData[0]["rounds"][roundIndex]["meldezahl"],
-      model.playersData[1]["rounds"][roundIndex]["erzieltePunkte"] +
-        model.playersData[1]["rounds"][roundIndex]["meldezahl"],
-      model.playersData[2]["rounds"][roundIndex]["erzieltePunkte"] +
-        model.playersData[2]["rounds"][roundIndex]["meldezahl"],
-    ];
+    const round = ["R" + (roundIndex + 1)];
+
+    for (const playerIndex in model.playersData) {
+      const roundPoints =
+        model.playersData[playerIndex]["rounds"][roundIndex]["erzieltePunkte"] +
+        model.playersData[playerIndex]["rounds"][roundIndex]["meldezahl"];
+      round.push(roundPoints);
+    }
 
     rounds.push(round);
     // TODO: roundIndex um 1 erhöhen
