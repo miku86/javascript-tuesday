@@ -378,7 +378,24 @@ const utils = {
       tbody.appendChild(tr);
     }
 
-    // TODO: eine reihe für summe der spielerpunkte
+    const sumAllRounds = ["Sum"];
+
+    const maxRoundIndex = model.playersData[0]["rounds"].length;
+
+    for (const playerIndex in model.playersData) {
+      let sumCurrentPlayer = 0;
+
+      for (let index = 0; index < maxRoundIndex; index++) {
+        sumCurrentPlayer +=
+          model.playersData[playerIndex]["rounds"][index]["erzieltePunkte"] +
+          model.playersData[playerIndex]["rounds"][index]["meldezahl"];
+      }
+
+      sumAllRounds.push(sumCurrentPlayer);
+    }
+
+    const sumTr = utils.createTr("td", sumAllRounds);
+    tbody.appendChild(sumTr);
 
     table.appendChild(tbody);
 
