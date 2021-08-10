@@ -21,7 +21,7 @@ const model = {
     for (const player of model.playersData) {
       if (player.id === model.reizzahlWinnerId) {
         player.rounds.push({
-          reizzahl: 123, // save correct reizzahl
+          reizzahl: 123, // TODO: save correct reizzahl
         });
       } else {
         player.rounds.push({
@@ -51,9 +51,59 @@ const model = {
 };
 
 const view = {
+  clearApp() {
+    const app = utils.findApp();
+    app.innerHTML = "";
+  },
+
   displayNewPlayerView() {
     view.generateNewPlayerElements();
     utils.setupFormSubmitHandler();
+  },
+
+  displayPlayersList() {
+    view.clearApp();
+    view.generateNewPlayerElements();
+    utils.setupFormSubmitHandler();
+    view.generatePlayersList();
+  },
+
+  displayStartGameButton() {
+    view.generateStartGameButton();
+  },
+
+  displayReizzahlElements() {
+    view.generateReizzahlElements();
+    utils.setupDropdownChangeHandler();
+    utils.setupSubmitReizzahlHandler();
+  },
+
+  displayMeldezahlElements() {
+    view.generateInputElements("Meldezahl", "meldezahl", "meldezahl");
+    utils.setupSubmitMeldezahlHandler();
+  },
+
+  displayErzieltePunkteElements() {
+    view.generateInputElements(
+      "Erzielte Punkte",
+      "erzieltepunkte",
+      "erzieltepunkte"
+    );
+    utils.setupSubmitErzieltePunkteHandler();
+  },
+
+  displayCurrentStanding() {
+    view.generateTable();
+
+    const newRoundButton = utils.createButton(
+      "Neue Runde starten",
+      "new-round"
+    );
+
+    const app = utils.findApp();
+    app.appendChild(newRoundButton);
+
+    utils.setupSubmitStartNewRoundHandler();
   },
 
   generateNewPlayerElements() {
@@ -76,18 +126,6 @@ const view = {
     myForm.appendChild(myButton);
   },
 
-  displayPlayersList() {
-    view.clearApp();
-    view.generateNewPlayerElements();
-    utils.setupFormSubmitHandler();
-    view.generatePlayersList();
-  },
-
-  clearApp() {
-    const app = utils.findApp();
-    app.innerHTML = "";
-  },
-
   generatePlayersList() {
     const playersList = document.createElement("ul");
     playersList.className = "players-list";
@@ -104,21 +142,11 @@ const view = {
     }
   },
 
-  displayStartGameButton() {
-    view.generateStartGameButton();
-  },
-
   generateStartGameButton() {
     const startGameButton = utils.createButton("Start Game", "start-game");
 
     const app = utils.findApp();
     app.appendChild(startGameButton);
-  },
-
-  displayReizzahlElements() {
-    view.generateReizzahlElements();
-    utils.setupDropdownChangeHandler();
-    utils.setupSubmitReizzahlHandler();
   },
 
   generateReizzahlElements() {
@@ -139,28 +167,6 @@ const view = {
       "reizzahl-submit"
     );
     app.appendChild(submitReizzahlButton);
-  },
-
-  displayMeldezahlElements() {
-    view.generateInputElements("Meldezahl", "meldezahl", "meldezahl");
-    utils.setupSubmitMeldezahlHandler();
-  },
-
-  displayErzieltePunkteElements() {
-    view.generateInputElements(
-      "Erzielte Punkte",
-      "erzieltepunkte",
-      "erzieltepunkte"
-    );
-    utils.setupSubmitErzieltePunkteHandler();
-  },
-
-  displayCurrentStanding() {
-    // berechne für jede runde: spielers punkte (punkte on-demand)
-    // berechne gesamtstand: spielers punkte
-    view.generateTable();
-
-    // button, um nächste runde zu starten
   },
 
   generateInputElements(headingText, inputClass, buttonId) {
@@ -262,6 +268,11 @@ const utils = {
     );
   },
 
+  setupSubmitStartNewRoundHandler() {
+    const newRoundButton = document.querySelector("#new-round");
+    newRoundButton.addEventListener("click", controller.startGame);
+  },
+
   setupDropdownChangeHandler() {
     const dropdown = document.querySelector(".reizzahl-players-dropdown");
     dropdown.addEventListener("change", () => {
@@ -358,20 +369,20 @@ const utils = {
 
     const tbody = document.createElement("tbody");
 
-    // TODO: for loop für anzahl von runden
-    const roundIndex = 0;
     const rounds = [];
-    const round = ["R" + (roundIndex + 1)];
 
-    for (const playerIndex in model.playersData) {
-      const roundPoints =
-        model.playersData[playerIndex]["rounds"][roundIndex]["erzieltePunkte"] +
-        model.playersData[playerIndex]["rounds"][roundIndex]["meldezahl"];
-      round.push(roundPoints);
+    for (let i = 0; i < model.playersData[0]["rounds"].length; i++) {
+      const round = ["R" + (i + 1)];
+
+      for (const playerIndex in model.playersData) {
+        const roundPoints =
+          model.playersData[playerIndex]["rounds"][i]["erzieltePunkte"] +
+          model.playersData[playerIndex]["rounds"][i]["meldezahl"];
+        round.push(roundPoints);
+      }
+
+      rounds.push(round);
     }
-
-    rounds.push(round);
-    // TODO: roundIndex um 1 erhöhen
 
     for (const round of rounds) {
       const tr = utils.createTr("td", round);
