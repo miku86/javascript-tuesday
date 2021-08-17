@@ -40,18 +40,11 @@
 - [x] nicht reizen gewonnen => hasEz ? (sumMzEZ) : 0
 - [x] nicht reizen gewonnen + reizen gewonnen verloren => hasEz ? (sumMzEZ) + 40 : 0
 - [x] reizen gewonnen => (sumMzEZ) >= rz ? (sumMzEZ) : -rz
-- [ ] rz 300, durchspielen, ez 250 => summe egal => + 1.000
-- [ ] rz 300, durchspielen, ez 240 => summe egal => - 1.000
-- [x] create chart skeleton
-- [x] x achse label (each player name)
-- [ ] y achse label (round points)
-- [ ] wert der balken (points of each player)
-- [ ] balken mittig starten (zentrieren)
-- [ ] balken farbe ändern (feste)
-- [ ] add correct data
-- [ ] Show current standings after round
-- [ ] As a User, I can see the button "New Round"
-- [ ] As a User, I can click the button "New Round"
+- [x] rz 300, durchspielen, ez 250 => summe egal => + 1.000
+- [x] rz 300, durchspielen, ez 240 => summe egal => - 1.000
+- [x] Show current standings after round
+- [x] As a User, I can see the button "New Round"
+- [x] As a User, I can click the button "New Round"
 
 ## NICE TO HAVE
 
@@ -71,3 +64,4 @@
 - [ ] As a User, I can delete a player
 - [ ] As a User, I can see who's the dealer
 - [ ] As a User, the input field to add a new player is autofocused
+- [ ] As a User, I can only add min 3 player and max 4 players
