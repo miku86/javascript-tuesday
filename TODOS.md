@@ -52,17 +52,20 @@
 - [x] reizzahl: remove random number
 - [x] meldezahl: remove random number
 - [x] erzielte: remove random number
+- [ ] reizzahl: must exist
+- [ ] reizzahl: must be a number
 - [ ] I can submit an input by clicking Enter
 - [ ] the input field to add a new player is autofocused
 - [ ] player name: edit a player name
 - [ ] player name: delete a player
 - [ ] player name: at least X characters
 - [ ] player name: at least 3 player, max 4 players
-- [ ] reizzahl: must exist
 - [ ] meldezahl: style player rows
 - [ ] meldezahl: must exist
+- [ ] meldezahl: must be a number
 - [ ] erzielte: style player rows
 - [ ] erzielte: must exist
+- [ ] erzielte: must be a number
 - [ ] summe: rot/grün, ob punktzahl erreicht
 - [ ] summe: see who's the dealer
 - [ ] summe: see a graph for the "Total"-Numbers
