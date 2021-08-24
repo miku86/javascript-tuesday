@@ -340,8 +340,8 @@ const utils = {
     playerInput.className = inputClassname;
     playerInput.placeholder = inputPlaceholder;
     playerInput.autofocus = true;
-    playerInput.value =
-      dummyType === "name" ? utils.randomName() : utils.randomNumber();
+    // playerInput.value = dummyType === "name" ? utils.randomName() : utils.randomNumber();
+
     return playerInput;
   },
 

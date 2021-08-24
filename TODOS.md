@@ -48,10 +48,10 @@
 
 ## NICE TO HAVE
 
-- [ ] player name: Remove random names
-- [ ] reizzahl: remove random number
-- [ ] meldezahl: remove random number
-- [ ] erzielte: remove random number
+- [x] player name: Remove random names
+- [x] reizzahl: remove random number
+- [x] meldezahl: remove random number
+- [x] erzielte: remove random number
 - [ ] I can submit an input by clicking Enter
 - [ ] the input field to add a new player is autofocused
 - [ ] player name: edit a player name
