@@ -52,6 +52,9 @@
 - [x] reizzahl: remove random number
 - [x] meldezahl: remove random number
 - [x] erzielte: remove random number
+- [x] reizzahl: set to correct input type
+- [x] meldezahl:set to correct input type
+- [x] erzielte: set to correct input type
 - [ ] reizzahl: must exist
 - [ ] reizzahl: must be a number
 - [ ] I can submit an input by clicking Enter

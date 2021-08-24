@@ -117,7 +117,8 @@ const view = {
 
     const myInputField = utils.createInputField(
       "New Player Name",
-      "input-player-name"
+      "input-player-name",
+      INPUT_TYPE.TEXT
     );
     myForm.appendChild(myInputField);
 
@@ -151,7 +152,8 @@ const view = {
   generateReizzahlElements() {
     const reizzahlInput = utils.createInputField(
       "Reizzahl eingeben",
-      "input-reizzahl"
+      "input-reizzahl",
+      INPUT_TYPE.NUMBER
     );
 
     const app = utils.findApp();
@@ -181,7 +183,8 @@ const view = {
 
       const input = utils.createInputField(
         "Punktzahl eingeben",
-        `input-${inputClass}`
+        `input-${inputClass}`,
+        INPUT_TYPE.NUMBER
       );
       input.id = player.id;
 
@@ -331,9 +334,9 @@ const utils = {
     return playersDropdown;
   },
 
-  createInputField(inputPlaceholder, inputClassname) {
+  createInputField(inputPlaceholder, inputClassname, inputType = "text") {
     const playerInput = document.createElement("input");
-    playerInput.type = "text";
+    playerInput.type = inputType;
     playerInput.className = inputClassname;
     playerInput.placeholder = inputPlaceholder;
     playerInput.autofocus = true;
@@ -422,6 +425,11 @@ const utils = {
 
     return tr;
   },
+};
+
+const INPUT_TYPE = {
+  NUMBER: "number",
+  TEXT: "text",
 };
 
 view.displayNewPlayerView();
