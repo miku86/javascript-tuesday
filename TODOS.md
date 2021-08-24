@@ -48,20 +48,21 @@
 
 ## NICE TO HAVE
 
-- [x] As a User, I can submit a new player by clicking Enter
-- [ ] As a User, I can see a status message (success/error)
-- [ ] As a User, I can see a status message (success/error)
-- [ ] As a User, I can see a message to start "Reizen"
-- [ ] As a User, I can't see a message to start "Reizen"
-- [ ] As a User, I can see a message to start "Zeigen + Ablegen"
-- [ ] As a User, I can't see a message to start "Zeigen + Ablegen"
-- [ ] As a User, I can see a message to start "Melden + Ansagen"
-- [ ] As a User, I can't see a message to start "Melden"
-- [ ] As a User, I can see which user did (not) achieved its goal
-- [ ] As a User, I can see a row for the "Total"-Numbers
-- [ ] As a User, I can see a graph for the "Total"-Numbers
-- [ ] As a User, I can edit a player name
-- [ ] As a User, I can delete a player
-- [ ] As a User, I can see who's the dealer
-- [ ] As a User, the input field to add a new player is autofocused
-- [ ] As a User, I can only add min 3 player and max 4 players
+- [ ] player name: Remove random names
+- [ ] reizzahl: remove random number
+- [ ] meldezahl: remove random number
+- [ ] erzielte: remove random number
+- [ ] I can submit an input by clicking Enter
+- [ ] the input field to add a new player is autofocused
+- [ ] player name: edit a player name
+- [ ] player name: delete a player
+- [ ] player name: at least X characters
+- [ ] player name: at least 3 player, max 4 players
+- [ ] reizzahl: must exist
+- [ ] meldezahl: style player rows
+- [ ] meldezahl: must exist
+- [ ] erzielte: style player rows
+- [ ] erzielte: must exist
+- [ ] summe: rot/grün, ob punktzahl erreicht
+- [ ] summe: see who's the dealer
+- [ ] summe: see a graph for the "Total"-Numbers
