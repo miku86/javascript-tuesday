@@ -35,14 +35,14 @@ const model = {
     model.playersData = newPlayers;
   },
 
-  savePunkte(inputs, key) {
-    const inputsArray = [...inputs];
+  savePunkte(inputData, key) {
     model.playersData.reduce((prev, curr) => {
-      const currentPlayerInput = inputsArray.filter(
+      const currentPlayerInput = inputData.filter(
         (input) => Number(input.id) === curr.id
       );
 
       const currentRoundIndex = curr.rounds.length - 1;
+      // TODO: checken, ob leere angabe in 0 umgewandelt wird
       curr.rounds[currentRoundIndex][key] = Number(currentPlayerInput[0].value);
 
       return [...prev, curr];
@@ -224,9 +224,18 @@ const controller = {
 
   saveMeldezahl() {
     const inputs = utils.findInputs("input-meldezahl");
-    model.savePunkte(inputs, "meldezahl");
-    view.clearApp();
-    view.displayErzieltePunkteElements();
+    const inputData = utils.convertHtmlInputsToInputData(inputs);
+    // TODO: validate input numbers
+    const result = utils.validateNumberInputs(inputData);
+    console.log(result);
+
+    if (result) {
+      model.savePunkte(inputData, "meldezahl");
+      view.clearApp();
+      view.displayErzieltePunkteElements();
+    } else {
+      alert("Mindestens ein Input war keine Zahl!");
+    }
   },
 
   saveErzieltepunkte() {
@@ -424,6 +433,42 @@ const utils = {
     }
 
     return tr;
+  },
+
+  // reizzahl: must exist
+  // reizzahl: validate for number on submit
+  // meldezahl: must exist
+  // meldezahl: validate for number on submit
+  // erzielte: must exist
+  // erzielte: validate for number on submit
+  validateNumberInputs(inputData) {
+    let isAllInputDataANumber = true;
+
+    console.log(inputData);
+
+    for (const input of inputData) {
+      if (isNaN(input.value)) {
+        isAllInputDataANumber = false;
+      }
+    }
+
+    return isAllInputDataANumber;
+  },
+
+  convertHtmlInputsToInputData(htmlInputs) {
+    const inputData = [];
+
+    for (const htmlInput of htmlInputs) {
+      const inputDataObject = {};
+
+      inputDataObject["id"] = htmlInput.id;
+      // TODO: checken, ob leere angabe in 0 umgewandelt wird
+      inputDataObject["value"] = Number(htmlInput.value);
+
+      inputData.push(inputDataObject);
+    }
+
+    return inputData;
   },
 };
 
