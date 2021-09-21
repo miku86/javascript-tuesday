@@ -224,13 +224,10 @@ const controller = {
 
   saveMeldezahl() {
     const inputs = utils.findInputs("input-meldezahl");
-    const inputData = utils.convertHtmlInputsToInputData(inputs);
-    // TODO: validate input numbers
-    const result = utils.validateNumberInputs(inputData);
-    console.log(result);
+    const result = utils.convertHtmlInputsToInputData(inputs);
 
-    if (result) {
-      model.savePunkte(inputData, "meldezahl");
+    if (result.isAllNumber) {
+      model.savePunkte(result.data, "meldezahl");
       view.clearApp();
       view.displayErzieltePunkteElements();
     } else {
@@ -456,16 +453,23 @@ const utils = {
   },
 
   convertHtmlInputsToInputData(htmlInputs) {
-    const inputData = [];
+    const inputData = {
+      data: [],
+      isAllNumber: true,
+    };
 
     for (const htmlInput of htmlInputs) {
       const inputDataObject = {};
 
       inputDataObject["id"] = htmlInput.id;
-      // TODO: checken, ob leere angabe in 0 umgewandelt wird
-      inputDataObject["value"] = Number(htmlInput.value);
 
-      inputData.push(inputDataObject);
+      if (htmlInput.value === "") {
+        inputData.isAllNumber = false;
+      } else {
+        inputDataObject["value"] = Number(htmlInput.value);
+      }
+
+      inputData.data.push(inputDataObject);
     }
 
     return inputData;
