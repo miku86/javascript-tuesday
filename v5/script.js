@@ -15,13 +15,13 @@ const model = {
     model.reizzahlWinnerId = Number(winnerId);
   },
 
-  saveReizzahl() {
+  saveReizzahl(reizzahl) {
     const newPlayers = [];
 
     for (const player of model.playersData) {
       if (player.id === model.reizzahlWinnerId) {
         player.rounds.push({
-          reizzahl: 123, // TODO: save correct reizzahl
+          reizzahl,
         });
       } else {
         player.rounds.push({
@@ -217,9 +217,15 @@ const controller = {
   },
 
   saveReizzahl() {
-    model.saveReizzahl();
-    view.clearApp();
-    view.displayMeldezahlElements();
+    const inputs = utils.findInputs("input-reizzahl");
+
+    if (inputs[0].value === "") {
+      alert("Bitte Zahl eingeben");
+    } else {
+      model.saveReizzahl(Number(inputs[0].value));
+      view.clearApp();
+      view.displayMeldezahlElements();
+    }
   },
 
   saveMeldezahl() {
