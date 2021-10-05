@@ -42,7 +42,6 @@ const model = {
       );
 
       const currentRoundIndex = curr.rounds.length - 1;
-      // TODO: checken, ob leere angabe in 0 umgewandelt wird
       curr.rounds[currentRoundIndex][key] = Number(currentPlayerInput[0].value);
 
       return [...prev, curr];
@@ -243,9 +242,15 @@ const controller = {
 
   saveErzieltepunkte() {
     const inputs = utils.findInputs("input-erzieltepunkte");
-    model.savePunkte(inputs, "erzieltePunkte");
-    view.clearApp();
-    view.displayCurrentStanding();
+    const result = utils.convertHtmlInputsToInputData(inputs);
+
+    if (result.isAllNumber) {
+      model.savePunkte(result.data, "erzieltePunkte");
+      view.clearApp();
+      view.displayCurrentStanding();
+    } else {
+      alert("Mindestens ein Input war keine Zahl!");
+    }
   },
 };
 
