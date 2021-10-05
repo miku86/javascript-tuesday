@@ -65,6 +65,7 @@ const view = {
     view.generateNewPlayerElements();
     utils.setupFormSubmitHandler();
     view.generatePlayersList();
+    utils.setupDeletePlayerHandler();
   },
 
   displayStartGameButton() {
@@ -135,6 +136,13 @@ const view = {
     for (const player of model.playersData) {
       const playerItem = document.createElement("li");
       playerItem.textContent = player.name;
+      playerItem.className = "players-list-item 1";
+      playerItem.id = player.id;
+
+      const deletePlayerButton = document.createElement("button");
+      deletePlayerButton.textContent = "X";
+      deletePlayerButton.className = "delete-player";
+      playerItem.appendChild(deletePlayerButton);
 
       const playersList = document.querySelector(".players-list");
       playersList.appendChild(playerItem);
@@ -210,6 +218,11 @@ const controller = {
     utils.checkIfDisplayStartGameButton();
   },
 
+  deletePlayer(playerId) {
+    // TODO: finde den spieler mit playerId in playersData und lösche ihn
+    console.log("Delete: ", playerId);
+  },
+
   startGame() {
     view.clearApp();
     view.displayReizzahlElements();
@@ -258,6 +271,17 @@ const utils = {
   setupFormSubmitHandler() {
     const addPlayerForm = document.querySelector(".form-add-player");
     addPlayerForm.addEventListener("submit", controller.createNewPlayer);
+  },
+
+  setupDeletePlayerHandler() {
+    const deletePlayerButtons = document.querySelectorAll(".delete-player");
+
+    for (const button of deletePlayerButtons) {
+      button.addEventListener(
+        "click",
+        controller.deletePlayer(button.parentNode.id)
+      );
+    }
   },
 
   setupStartGameHandler() {
