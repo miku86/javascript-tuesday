@@ -55,16 +55,23 @@
 - [x] reizzahl: set to correct input type
 - [x] meldezahl:set to correct input type
 - [x] erzielte: set to correct input type
-- [ ] reizzahl: must exist
-- [ ] reizzahl: validate for number on submit
-- [ ] meldezahl: must exist
-- [ ] meldezahl: validate for number on submit
-- [ ] erzielte: must exist
-- [ ] erzielte: validate for number on submit
-- [ ] I can submit an input by clicking Enter
-- [ ] the input field to add a new player is autofocused
+- [x] reizzahl: must exist
+- [x] reizzahl: validate for number on submit
+- [x] meldezahl: must exist
+- [x] meldezahl: validate for number on submit
+- [x] the input field to add a new player is autofocused
+- [x] reizzahl: all players are below each other
+- [x] erzieltepunkte: all players are below each other
+- [x] erzielte: must exist
+- [x] erzielte: validate for number on submit
+- [ ] player name: delete a player:
+      1. each player has trailing X
+      1. after click: which player's X got clicked?
+      1. find player in array by their X
+- [ ] I can submit reizzahl by clicking Enter
+- [ ] I can submit meldezahl by clicking Enter
+- [ ] I can submit erzieltepunkte by clicking Enter
 - [ ] player name: edit a player name
-- [ ] player name: delete a player
 - [ ] player name: at least X characters
 - [ ] player name: at least 3 player, max 4 players
 - [ ] meldezahl: style player rows
