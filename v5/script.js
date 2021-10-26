@@ -136,6 +136,7 @@ const view = {
     for (const player of model.playersData) {
       const playerItem = document.createElement("li");
       playerItem.textContent = player.name;
+      // TODO: warum steht hier "1"?????????
       playerItem.className = "players-list-item 1";
       playerItem.id = player.id;
 
