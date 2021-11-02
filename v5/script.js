@@ -11,6 +11,15 @@ const model = {
     model.playersData.push(newPlayer);
   },
 
+  deletePlayer(playerId) {
+    for (const player of model.playersData) {
+      if(playerId == player.id) {
+        const index = model.playersData.findIndex(player => playerId == player.id)
+        model.playersData.splice(index,1)
+      }
+    }
+  },
+
   updateReizzahlWinnerId(winnerId) {
     model.reizzahlWinnerId = Number(winnerId);
   },
@@ -225,8 +234,8 @@ const controller = {
   },
 
   deletePlayer(playerId) {
-    // TODO: finde den spieler mit playerId in playersData und lösche ihn
-    console.log("Delete: ", playerId);
+    model.deletePlayer(playerId);
+    view.displayPlayersList();
   },
 
   startGame() {
@@ -285,7 +294,7 @@ const utils = {
     for (const button of deletePlayerButtons) {
       button.addEventListener(
         "click",
-        controller.deletePlayer(button.parentNode.id)
+        () => controller.deletePlayer(button.parentNode.id)
       );
     }
   },

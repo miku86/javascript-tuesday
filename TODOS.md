@@ -65,10 +65,8 @@
 - [x] erzielte: must exist
 - [x] erzielte: validate for number on submit
 - [x] kontrollieren, dass player name input einen gültigen wert hat
-- [ ] player name: delete a player:
-  [x] 1. each player has trailing X
-      1. after click: which player's X got clicked?
-      1. find player in array by their X
+- [x] player name: delete a player
+- [ ] add random id when creating a player
 - [ ] I can submit reizzahl by clicking Enter
 - [ ] I can submit meldezahl by clicking Enter
 - [ ] I can submit erzieltepunkte by clicking Enter
