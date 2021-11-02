@@ -214,9 +214,14 @@ const controller = {
   createNewPlayer() {
     event.preventDefault();
     const playerName = document.querySelector(".input-player-name");
-    model.createNewPlayer(playerName.value);
-    view.displayPlayersList();
-    utils.checkIfDisplayStartGameButton();
+
+    if (playerName.value === "") {
+      alert("Bitte Name eingeben");
+    } else {
+      model.createNewPlayer(playerName.value);
+      view.displayPlayersList();
+      utils.checkIfDisplayStartGameButton();
+    }
   },
 
   deletePlayer(playerId) {

@@ -64,15 +64,15 @@
 - [x] erzieltepunkte: all players are below each other
 - [x] erzielte: must exist
 - [x] erzielte: validate for number on submit
+- [x] kontrollieren, dass player name input einen gültigen wert hat
 - [ ] player name: delete a player:
-      1. each player has trailing X
+  [x] 1. each player has trailing X
       1. after click: which player's X got clicked?
       1. find player in array by their X
 - [ ] I can submit reizzahl by clicking Enter
 - [ ] I can submit meldezahl by clicking Enter
 - [ ] I can submit erzieltepunkte by clicking Enter
 - [ ] player name: edit a player name
-- [ ] player name: at least X characters
 - [ ] player name: at least 3 player, max 4 players
 - [ ] meldezahl: style player rows
 - [ ] erzielte: style player rows
