@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: #666">
+    <div id="app">
+      <ul>
+        <li v-for="player in players" v-if="player.isActive">{{ player.name }}</li>
+      </ul>
+      <p>
+        {{ joinedNames }}
+      </p>
+      <button v-on:click="joinNames">join names</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          players: [
+            { name: "Tobi", isActive: true },
+            { name: "Mario", isActive: false },
+            { name: "Michael", isActive: true },
+          ],
+          joinedNames: "",
+        },
+        methods: {
+          joinNames: function() {
+            for (player of this.players) {
+              this.joinedNames += " " + player.name;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
