@@ -1,82 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body style="background-color: #666">
-    <div id="app">
-      <!-- Page 1 (Add Players) -->
-      <div v-if="currentPage == 1">
-        <input
-          v-model="playerNameInput"
-          type="text"
-          placeholder="Spielername eingeben"
-        />
-        <button v-on:click="addPlayer">Add Player</button>
-        <ul>
-          <li v-for="player in players">{{ player.name }}</li>
-        </ul>
-        <button v-if="players.length >= 3" v-on:click="goToNextPage">
-          Start Game
-        </button>
-      </div>
-      <!-- Page 2 (Reizen) -->
-      <div v-if="currentPage == 2">
-        <input
-          v-model="reizzahlInput"
-          type="number"
-          placeholder="Reizzahl eingeben"
-        />
-        <select v-model="selectedPlayerId">
-          <option disabled value="0">Select player</option>
-          <option v-for="player in players" :value="player.id">
-            {{ player.name }}
-          </option>
-        </select>
-        <button :disabled="reizzahlInput <= 0" v-on:click="saveReizzahl">
-          Save Reizzahl
-        </button>
-      </div>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body style="background-color: #666">
+  <div id="app">
+    <!-- Page (Add Players) -->
+    <div v-if="currentPage == PAGE.PLAYERS">
+      <input v-model="playerNameInput" type="text" placeholder="Spielername eingeben" />
+      <button v-on:click="addPlayer">Add Player</button>
+      <ul>
+        <li v-for="player in players">{{ player.name }}</li>
+      </ul>
+      <button v-if="players.length >= 3" v-on:click="goToReizen">
+        Start Game
+      </button>
     </div>
-    <script>
-      var app = new Vue({
-        el: "#app",
-        data: {
-          playerId: 0,
-          currentPage: 1,
-          players: [],
-          playerNameInput: "",
-          reizzahlInput: 0,
-          selectedPlayerId: 0,
+
+    <!-- Page (Reizen) -->
+    <div v-if="currentPage == PAGE.REIZEN">
+      <input v-model="reizzahlInput" type="number" placeholder="Reizzahl eingeben" />
+      <select v-model="selectedPlayerId">
+        <option disabled value="0">Select player</option>
+        <option v-for="player in players" :value="player.id">
+          {{ player.name }}
+        </option>
+      </select>
+      <button :disabled="reizzahlInput <= 0" v-on:click="goToMelden">
+        Save Reizzahl
+      </button>
+    </div>
+
+    <!-- Page (Melden) -->
+    <div v-if="currentPage == PAGE.MELDEN">
+      <button v-on:click="goToErzielt">
+        Save Meldezahl
+      </button>
+    </div>
+
+    <!-- Page (Erzielt) -->
+    <div v-if="currentPage == PAGE.ERZIELT">
+      <button v-on:click="goToErgebnis">
+        Save Erzielte Punkte
+      </button>
+    </div>
+
+    <!-- Page (Ergebnis) -->
+    <div v-if="currentPage == PAGE.ERGEBNIS">
+    </div>
+
+  </div>
+  <script>
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        PAGE: {
+          PLAYERS: "PlayerInput",
+          REIZEN: "ReizenInput",
+          MELDEN: "MeldenInput",
+          ERZIELT: "ErzieltePunkteInput",
+          ERGEBNIS: "ErgebnisOutput",
         },
-        methods: {
-          addPlayer: function () {
-            this.players.push({
-              id: (this.playerId += 1),
-              name: this.playerNameInput,
-              rounds: [],
-            });
-          },
-          goToNextPage: function () {
-            this.currentPage += 1;
-          },
-          saveReizzahl: function () {
-            const newPlayers = [];
-            for (player of this.players) {
-              if (player.id === this.selectedPlayerId) {
-                player.rounds.push({ reizzahl: Number(this.reizzahlInput) });
-              } else {
-                player.rounds.push({ reizzahl: 0 });
-              }
-              newPlayers.push(player);
+        playerId: 0,
+        currentPage: "PlayerInput",
+        players: [],
+        playerNameInput: "",
+        reizzahlInput: 0,
+        selectedPlayerId: 0,
+
+      },
+      methods: {
+        addPlayer: function () {
+          this.players.push({
+            id: (this.playerId += 1),
+            name: this.playerNameInput,
+            rounds: [],
+          });
+        },
+        goToReizen: function () {
+          this.currentPage = this.PAGE.REIZEN;
+        },
+        goToMelden: function () {
+          const newPlayers = [];
+          for (player of this.players) {
+            if (player.id === this.selectedPlayerId) {
+              player.rounds.push({ reizzahl: Number(this.reizzahlInput) });
+            } else {
+              player.rounds.push({ reizzahl: 0 });
             }
-          },
+            newPlayers.push(player);
+          }
+          this.currentPage = this.PAGE.MELDEN
         },
-      });
-    </script>
-  </body>
+        goToErzielt: function () {
+          this.currentPage = this.PAGE.ERZIELT;
+        },
+        goToErgebnis: function () {
+          this.currentPage = this.PAGE.ERGEBNIS;
+        },
+      },
+    });
+  </script>
+</body>
+
 </html>
