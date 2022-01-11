@@ -38,6 +38,10 @@
 
     <!-- Page (Melden) -->
     <div v-if="currentPage == PAGE.MELDEN">
+      <h1>Meldezahl eingeben</h1>
+      <p v-for="player in players">{{player.name}}
+        <input :id="player.id" value="" type="number" v-model="player.rounds[currentRound].meldezahl" placeholder="Meldezahl eingeben"/>
+      </p>
       <button v-on:click="goToErzielt">
         Save Meldezahl
       </button>
@@ -69,11 +73,12 @@
         },
         playerId: 0,
         currentPage: "PlayerInput",
+        currentRound: 0,
         players: [],
         playerNameInput: "",
         reizzahlInput: 0,
         selectedPlayerId: 0,
-
+        meldezahlInputs: []
       },
       methods: {
         addPlayer: function () {
@@ -82,9 +87,6 @@
             name: this.playerNameInput,
             rounds: [],
           });
-        },
-        goToReizen: function () {
-          this.currentPage = this.PAGE.REIZEN;
         },
         goToMelden: function () {
           const newPlayers = [];
@@ -98,11 +100,16 @@
           }
           this.currentPage = this.PAGE.MELDEN
         },
+        goToReizen: function () {
+          this.currentPage = this.PAGE.REIZEN;
+        },
         goToErzielt: function () {
-          this.currentPage = this.PAGE.ERZIELT;
+          console.log(this.players)
+          // this.currentPage = this.PAGE.ERZIELT;
         },
         goToErgebnis: function () {
           this.currentPage = this.PAGE.ERGEBNIS;
+          // TODO: currentRound erhöhen
         },
       },
     });
