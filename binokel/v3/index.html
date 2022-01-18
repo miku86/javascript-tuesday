@@ -49,6 +49,10 @@
 
     <!-- Page (Erzielt) -->
     <div v-if="currentPage == PAGE.ERZIELT">
+      <h1>Erzielte Punkte eingeben</h1>
+      <p v-for="player in players">{{player.name}}
+        <input :id="player.id" value="" type="number" v-model="player.rounds[currentRound].erzielt" placeholder="Erzielte Punkte eingeben"/>
+      </p>
       <button v-on:click="goToErgebnis">
         Save Erzielte Punkte
       </button>
@@ -78,7 +82,6 @@
         playerNameInput: "",
         reizzahlInput: 0,
         selectedPlayerId: 0,
-        meldezahlInputs: []
       },
       methods: {
         addPlayer: function () {
@@ -104,8 +107,7 @@
           this.currentPage = this.PAGE.REIZEN;
         },
         goToErzielt: function () {
-          console.log(this.players)
-          // this.currentPage = this.PAGE.ERZIELT;
+          this.currentPage = this.PAGE.ERZIELT;
         },
         goToErgebnis: function () {
           this.currentPage = this.PAGE.ERGEBNIS;
