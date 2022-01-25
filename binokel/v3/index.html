@@ -13,7 +13,7 @@
     <!-- Page (Add Players) -->
     <div v-if="currentPage == PAGE.PLAYERS">
       <input v-model="playerNameInput" type="text" placeholder="Spielername eingeben" />
-      <button v-on:click="addPlayer">Add Player</button>
+      <button :disabled="playerNameInput == ''" v-on:click="addPlayer">Add Player</button>
       <ul>
         <li v-for="player in players">{{ player.name }}</li>
       </ul>
