@@ -42,7 +42,7 @@
       <p v-for="player in players">{{player.name}}
         <input :id="player.id" value="" type="number" v-model="player.rounds[currentRound].meldezahl" placeholder="Meldezahl eingeben"/>
       </p>
-      <button v-on:click="goToErzielt">
+      <button :disabled="players.map(player => player.rounds[currentRound].meldezahl).some(meldezahl => meldezahl.length === 0)" v-on:click="goToErzielt">
         Save Meldezahl
       </button>
     </div>
