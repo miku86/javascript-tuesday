@@ -53,7 +53,7 @@
       <p v-for="player in players">{{player.name}}
         <input :id="player.id" value="" type="number" v-model="player.rounds[currentRound].erzielt" placeholder="Erzielte Punkte eingeben"/>
       </p>
-      <button v-on:click="goToErgebnis">
+      <button :disabled="players.map(player => player.rounds[currentRound].erzielt).some(erzielt => erzielt.length === 0)" v-on:click="goToErgebnis">
         Save Erzielte Punkte
       </button>
     </div>
@@ -65,10 +65,9 @@
           <th>Round</th>
           <th v-for="player in players">{{player.name}}</th>
         </tr>
-        <tr v-for="">
-          <td>R1</td>
-          <td>{{}}</td>
-          <td>Summe Punkte R1 Spieler 2</td>
+        <tr v-for="round in rounds">
+          <td>R{{round.roundId}}</td>
+          <td v-for="sum in round.sums">{{sum.sum}}</td>
         </tr>       
       </table>
     </div>

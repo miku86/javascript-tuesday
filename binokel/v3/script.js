@@ -15,14 +15,14 @@ var app = new Vue({
         playerNameInput: "",
         reizzahlInput: 0,
         selectedPlayerId: 0,
-        rounds: {},
+        rounds: [],
     },
     methods: {
         addPlayer: function () {
             this.players.push({
                 id: (this.playerId += 1),
                 name: this.playerNameInput,
-                rounds: [{ meldezahl: "" }],
+                rounds: [{ meldezahl: "" , erzielt: ""}],
             });
         },
         goToMelden: function () {
@@ -45,25 +45,22 @@ var app = new Vue({
         },
         goToErgebnis: function () {
             this.currentPage = this.PAGE.ERGEBNIS;
-            //R1: ID1 10, ID2 20, ID 30
-            const rounds = {
-                //   R1: [
-                //     {ID:1, Sum:0},
-                //     {ID:1, Sum:0}
-                // ]
-            }
-            rounds.R1 = []
+            const rounds = []
+            const round = {roundId: this.currentRound+1, sums: []}
             for (const player of this.players) {
                 const id = player.id
-                const sumR1P1 = player.rounds[0].meldezahl + player.rounds[0].erzielt
+                const sum = Number(player.rounds[this.currentRound].meldezahl) + Number(player.rounds[this.currentRound].erzielt)
                 const currentPlayerRound = {
-                    "ID": id,
-                    "Sum": sumR1P1
+                    "id": id,
+                    "sum": sum
                 }
-                rounds.R1.push(currentPlayerRound)
+                round.sums.push(currentPlayerRound)
+                // roundId: 1, sums: [{ID: 1, Sum: 11},{ID: 2, Sum: 22},{ID: 3, Sum: 33}]
             }
+            rounds.push(round)
+            this.rounds = rounds
 
-            // TODO: currentRound erhöhen
+            this.currentRound += 1
         },
     },
 });
