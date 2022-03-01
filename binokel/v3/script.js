@@ -59,8 +59,13 @@ var app = new Vue({
             }
             rounds.push(round)
             this.rounds = rounds
-
+        },
+        goToNextRound: function () {
+            this.currentPage = this.PAGE.REIZEN;
             this.currentRound += 1
+            for (player of this.players) {
+                player.rounds.push({ meldezahl: "", reizzahl: 0, erzielt: "" })
+            }
         },
     },
 });
