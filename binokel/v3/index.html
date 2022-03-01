@@ -68,9 +68,11 @@
         <tr v-for="round in rounds">
           <td>R{{round.roundId}}</td>
           <td v-for="sum in round.sums">{{sum.sum}}</td>
-        </tr>       
-      </table>
-      <!-- TODO: Button um neue Runde zu starten -->
+        </tr>               
+      </table>      
+      <button v-on:click="goToNextRound">
+        Start new Round
+      </button>
     </div>
 
   </div>
