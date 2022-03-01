@@ -29,9 +29,9 @@ var app = new Vue({
             const newPlayers = [];
             for (player of this.players) {
                 if (player.id === this.selectedPlayerId) {
-                    player.rounds.push({ reizzahl: Number(this.reizzahlInput) });
+                    player.rounds[this.currentRound]["reizzahl"] = Number(this.reizzahlInput);
                 } else {
-                    player.rounds.push({ reizzahl: 0 });
+                    player.rounds[this.currentRound]["reizzahl"] = 0;
                 }
                 newPlayers.push(player);
             }
