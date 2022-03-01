@@ -77,3 +77,7 @@
 - [ ] summe: rot/grün, ob punktzahl erreicht
 - [ ] summe: see who's the dealer
 - [ ] summe: see a graph for the "Total"-Numbers
+- [ ] Fix data type for Melde/Reiz/Erzielte Punkte
+- [ ] Show Ergebnis for each Round
+- [ ] Show sum for all Rounds
+
