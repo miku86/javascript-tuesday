@@ -46,7 +46,7 @@ var app = new Vue({
         goToErgebnis: function () {
             this.currentPage = this.PAGE.ERGEBNIS;
             const rounds = []
-            const round = {roundId: this.currentRound+1, sums: []}
+            const round = { roundId: this.currentRound + 1, sums: [] }
             for (const player of this.players) {
                 const id = player.id
                 const sum = Number(player.rounds[this.currentRound].meldezahl) + Number(player.rounds[this.currentRound].erzielt)
