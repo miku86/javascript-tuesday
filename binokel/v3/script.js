@@ -22,7 +22,7 @@ var app = new Vue({
             this.players.push({
                 id: (this.playerId += 1),
                 name: this.playerNameInput,
-                rounds: [{ meldezahl: "" , erzielt: ""}],
+                rounds: [{ meldezahl: "", reizzahl: 0, erzielt: "" }],
             });
         },
         goToMelden: function () {
