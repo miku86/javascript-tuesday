@@ -12,7 +12,7 @@
   <div id="app">
     <!-- Page (Add Players) -->
     <div v-if="currentPage == PAGE.PLAYERS">
-      <input v-model="playerNameInput" type="text" placeholder="Spielername eingeben" />
+      <input v-model="playerNameInput" type="text" placeholder="Spielername eingeben" @keyup.enter="addPlayer"/>
       <button :disabled="playerNameInput == ''" v-on:click="addPlayer">Add Player</button>
       <ul>
         <li v-for="player in players">{{ player.name }}</li>
@@ -24,13 +24,13 @@
 
     <!-- Page (Reizen) -->
     <div v-if="currentPage == PAGE.REIZEN">
-      <input v-model="reizzahlInput" type="number" placeholder="Reizzahl eingeben" />
       <select v-model="selectedPlayerId">
         <option disabled value="0">Select player</option>
         <option v-for="player in players" :value="player.id">
           {{ player.name }}
         </option>
       </select>
+      <input v-model="reizzahlInput" type="number" placeholder="Reizzahl eingeben" @keyup.enter="goToMelden" />
       <button :disabled="reizzahlInput <= 0" v-on:click="goToMelden">
         Save Reizzahl
       </button>

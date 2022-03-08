@@ -67,9 +67,8 @@
 - [x] kontrollieren, dass player name input einen gültigen wert hat
 - [x] player name: delete a player
 - [x] add random id when creating a player
-- [ ] I can submit reizzahl by clicking Enter
-- [ ] I can submit meldezahl by clicking Enter
-- [ ] I can submit erzieltepunkte by clicking Enter
+- [x] I can submit new player by clicking Enter
+- [x] I can submit reizzahl by clicking Enter
 - [ ] player name: edit a player name
 - [ ] player name: at least 3 player, max 4 players
 - [ ] meldezahl: style player rows
