@@ -50,7 +50,7 @@ var app = new Vue({
         },
         goToErgebnis: function () {
             this.currentPage = this.PAGE.ERGEBNIS;
-            const rounds = []
+            const currentRounds = this.rounds
             const round = { roundId: this.currentRound + 1, sums: [] }
             for (const player of this.players) {
                 const id = player.id
@@ -60,10 +60,9 @@ var app = new Vue({
                     "sum": sum
                 }
                 round.sums.push(currentPlayerRound)
-                // roundId: 1, sums: [{ID: 1, Sum: 11},{ID: 2, Sum: 22},{ID: 3, Sum: 33}]
             }
-            rounds.push(round)
-            this.rounds = rounds
+            currentRounds.push(round)
+            this.rounds = currentRounds
         },
         goToNextRound: function () {
             this.currentPage = this.PAGE.REIZEN;
